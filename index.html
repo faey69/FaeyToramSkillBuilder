@@ -106,7 +106,7 @@
           <!-- Guard Skill Tree -->
           <div
             id="guardSkillTree"
-            class="skillTreeMainDiv inline-block border border-blue-500 mb-4 min-w-full"
+            class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
           >
             <div
               class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full md:w-[80vw] lg:w-[50vw] ps-8 pe-8"
@@ -132,114 +132,116 @@
               class="skillTreeTableDiv hidden"
               data-tree-name="Guard Skill Tree"
             >
-              <table class="border-collapse table-fixed text-center">
-                <tr>
-                  <td class="border border-black w-32 h-32 p-0"></td>
-                  <td class="border border-black w-32 h-32 p-0"></td>
-                  <td
-                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
-                  >
-                    <div class="flex flex-col h-full">
-                      <p class="skillName">Physical Guard</p>
-                      <div class="mt-auto flex flex-col items-center">
-                        <img
-                          src="./assets/skillIcons/guardSkill/physicalGuard.png"
-                          alt="Physical Guard"
-                          class="w-14 h-14"
-                        />
-                        <p class="skillLevel">0</p>
+              <div class="overflow-x-auto">
+                <table class="border-collapse table-fixed text-center">
+                  <tr>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Physical Guard</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/guardSkill/physicalGuard.png"
+                            alt="Physical Guard"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
-                  >
-                    <div class="flex flex-col h-full">
-                      <p class="skillName">Heavy Armor Mastery</p>
-                      <div class="mt-auto flex flex-col items-center">
-                        <img
-                          src="./assets/skillIcons/guardSkill/heavyArmorMastery.png"
-                          alt="Heavy Armor Mastery"
-                          class="w-14 h-14"
-                        />
-                        <p class="skillLevel">0</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Heavy Armor Mastery</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/guardSkill/heavyArmorMastery.png"
+                            alt="Heavy Armor Mastery"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td
-                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
-                  >
-                    <div class="flex flex-col h-full">
-                      <p class="skillName">Advanced Guard</p>
-                      <div class="mt-auto flex flex-col items-center">
-                        <img
-                          src="./assets/skillIcons/guardSkill/advancedGuard.png"
-                          alt="Advanced Guard"
-                          class="w-14 h-14"
-                        />
-                        <p class="skillLevel">0</p>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Advanced Guard</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/guardSkill/advancedGuard.png"
+                            alt="Advanced Guard"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td class="border border-black w-32 h-32 p-0"></td>
-                </tr>
-                <tr>
-                  <td
-                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
-                  >
-                    <div class="flex flex-col h-full">
-                      <p class="skillName">Light Armor Mastery</p>
-                      <div class="mt-auto flex flex-col items-center">
-                        <img
-                          src="./assets/skillIcons/guardSkill/lightArmorMastery.png"
-                          alt="Light Armor Mastery"
-                          class="w-14 h-14"
-                        />
-                        <p class="skillLevel">0</p>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Light Armor Mastery</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/guardSkill/lightArmorMastery.png"
+                            alt="Light Armor Mastery"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td
-                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
-                  >
-                    <div class="flex flex-col h-full">
-                      <p class="skillName">Advanced Evasion</p>
-                      <div class="mt-auto flex flex-col items-center">
-                        <img
-                          src="./assets/skillIcons/guardSkill/advancedEvasion.png"
-                          alt="Advanced Evasion"
-                          class="w-14 h-14"
-                        />
-                        <p class="skillLevel">0</p>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Advanced Evasion</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/guardSkill/advancedEvasion.png"
+                            alt="Advanced Evasion"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td class="border border-black w-32 h-32 p-0"></td>
-                </tr>
-                <tr>
-                  <td class="border border-black w-32 h-32 p-0"></td>
-                  <td class="border border-black w-32 h-32 p-0"></td>
-                  <td
-                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
-                  >
-                    <div class="flex flex-col h-full">
-                      <p class="skillName">Mirage Evasion</p>
-                      <div class="mt-auto flex flex-col items-center">
-                        <img
-                          src="./assets/skillIcons/guardSkill/mirageEvasion.png"
-                          alt="Mirage Evasion"
-                          class="w-14 h-14"
-                        />
-                        <p class="skillLevel">0</p>
+                    </td>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                  </tr>
+                  <tr>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Mirage Evasion</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/guardSkill/mirageEvasion.png"
+                            alt="Mirage Evasion"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
           <!-- Knight Skill Tree -->
