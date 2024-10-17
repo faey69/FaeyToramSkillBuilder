@@ -17,10 +17,10 @@
         >
           <span
             id="globalSPSpan"
-            class="font-bold bg-red-800 outline outline-black ps-1 pe-1"
+            class="font-bold bg-red-800 outline outline-black ps-1 pe-1 rounded-lg"
             >Total SP: 0</span
           >
-          <button id="burgerBtn" class="focus:outline-none lg:hidden">
+          <button id="burgerBtn" class="focus:outline lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-6 h-6"
@@ -39,7 +39,7 @@
         <!-- Side Nav Menu -->
         <div
           id="sideNav"
-          class="fixed bg-pink-600 text-white w-64 h-screen top-0 left-0 transform -translate-x-full lg:translate-x-0 nav-menu z-50"
+          class="fixed transition ease-in-out lg:transition-none overflow-y-auto bg-pink-600 text-white w-64 h-screen top-0 left-0 transform -translate-x-full lg:translate-x-0 nav-menu z-50"
         >
           <div class="w-full h-full flex flex-col justify-between">
             <ul class="space-y-6 p-4 w-full">
@@ -50,7 +50,7 @@
                   >Share build:</label
                 >
                 <input
-                  class="text-black w-full rounded-lg"
+                  class="text-black w-full rounded-lg p-1"
                   type="text"
                   id="buildFileNameInput"
                   name="buildFileNameInput"
@@ -58,7 +58,7 @@
                 />
                 <button
                   id="exportJsonBtn"
-                  class="bg-red-800 outline outline-black rounded-lg p-1 mt-1"
+                  class="bg-red-800 outline font-medium outline-black rounded-lg p-1 mt-2"
                 >
                   Download
                 </button>
@@ -78,7 +78,20 @@
                   class="block w-full text-sm font-medium cursor-pointer text-white bg-red-800 outline outline-black rounded-lg"
                 /><br />
               </li>
-              <li></li>
+              <li class="text-center">
+                <div
+                  class="outline outline-red-800 bg-pink-50 p-2 rounded-lg text-pink-600 font-semibold"
+                >
+                  <p class="font-extrabold text-lg">For Desktop:</p>
+                  <p>Left click to +1</p>
+                  <p>Right click to -1</p>
+                  <p>Hold CTRL to +10 or -10</p>
+                  <p class="font-extrabold text-lg">For Mobile:</p>
+                  <p class="font-normal text-xs">Works on Desktop too</p>
+                  <p>Tap to +1</p>
+                  <p>Long tap to set 0</p>
+                </div>
+              </li>
             </ul>
             <span
               class="block ms-2 me-2 mb-2 mt-auto text-center outline outline-red-800 bg-pink-50 text-pink-600 p-1 font-semibold font-serif rounded-full"

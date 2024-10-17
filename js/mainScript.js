@@ -1,5 +1,4 @@
 // -------- global variables --------
-let isRightClick = false;
 let globalSP = 0;
 let skillTreeArr = [];
 const skillMap = new Map(); // Eg: [{'Physical Guard', physicalGuard}, {..., ...}, ...]
@@ -106,19 +105,31 @@ class Skill {
   }
 }
 
-// -------- setup functions --------
-document.body.addEventListener('mousedown', (event) => {
-  if (event.button == 0) {
-    isRightClick = false;
-  } else if (event.button == 1) {
-    // wheel click for mouse
-  } else if (event.button == 2) {
-    isRightClick = true;
-  }
-});
+// -------- setup & util functions --------
+function longClick(element, callback) {
+  const timeout = 400; // In ms
+  let timer;
+
+  const mouseDown = () => {
+    timer = setTimeout(() => {
+      callback();
+    }, timeout);
+  };
+
+  const mouseUp = () => {
+    clearTimeout(timer);
+  };
+
+  // Attach both mouse and touch event listeners
+  element.addEventListener('mousedown', mouseDown);
+  element.addEventListener('mouseup', mouseUp);
+  element.addEventListener('mouseleave', mouseUp);
+  element.addEventListener('touchstart', mouseDown);
+  element.addEventListener('touchend', mouseUp);
+  element.addEventListener('touchcancel', mouseUp);
+}
 
 const skillTreeElements = document.querySelectorAll('.skillTreeMainDiv');
-
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click
   element.addEventListener('contextmenu', function (event) {
@@ -243,11 +254,52 @@ function updateGlobalSP() {
 
 const skillCells = Array.from(document.querySelectorAll('.skill'));
 skillCells.forEach((cell) => {
-  cell.addEventListener('mouseup', (event) => {
-    const isCtrlPressed = event.ctrlKey;
+  const skillName = cell.querySelector('.skillName').textContent;
+  const skill = skillMap.get(skillName);
+  let isLongClick = false;
+  function updateSkillLevelInHtmlRecursive(
+    skill,
+    skillCells,
+    visited = new Set()
+  ) {
+    if (visited.has(skill.name)) return; // Prevent processing the same skill again
+    visited.add(skill.name);
 
-    const skillName = cell.querySelector('.skillName').textContent;
-    const skill = skillMap.get(skillName);
+    console.log(`Updating skill: ${skill.name}, Level: ${skill.level}`);
+
+    // Find the first skillCell where the text inside the .skillName element matches the name of the skill
+    const skillCell = skillCells.find(
+      (cell) => cell.querySelector('.skillName').textContent === skill.name
+    );
+
+    if (skillCell) {
+      const skillLevel = skillCell.querySelector('.skillLevel');
+      skillLevel.textContent = skill.level; // Update the displayed skill level
+    } else {
+      console.error(`Skill cell not found for ${skill.name}`);
+    }
+
+    // Recursively update for prerequisites
+    if (skill.prereq) {
+      console.log(`Updating prerequisite: ${skill.prereq.name}`);
+      updateSkillLevelInHtmlRecursive(skill.prereq, skillCells, visited);
+    }
+
+    // Recursively update for children
+    skill.children.forEach((child) => {
+      console.log(`Updating child: ${child.name}`);
+      updateSkillLevelInHtmlRecursive(child, skillCells, visited);
+    });
+  }
+
+  cell.addEventListener('mousedown', (event) => {
+    if (isLongClick) {
+      // Prevent the regular click
+      isLongClick = false;
+      return;
+    }
+    const isCtrlPressed = event.ctrlKey;
+    const isRightClick = event.button === 2;
 
     if (isRightClick && !isCtrlPressed) {
       skill.decreaseLevel();
@@ -259,41 +311,6 @@ skillCells.forEach((cell) => {
       skill.setLevelTen();
     }
 
-    function updateSkillLevelInHtmlRecursive(
-      skill,
-      skillCells,
-      visited = new Set()
-    ) {
-      if (visited.has(skill.name)) return; // Prevent processing the same skill again
-      visited.add(skill.name);
-
-      console.log(`Updating skill: ${skill.name}, Level: ${skill.level}`);
-
-      // Find the first skillCell where the text inside the .skillName element matches the name of the skill
-      const skillCell = skillCells.find(
-        (cell) => cell.querySelector('.skillName').textContent === skill.name
-      );
-
-      if (skillCell) {
-        const skillLevel = skillCell.querySelector('.skillLevel');
-        skillLevel.textContent = skill.level; // Update the displayed skill level
-      } else {
-        console.error(`Skill cell not found for ${skill.name}`);
-      }
-
-      // Recursively update for prerequisites
-      if (skill.prereq) {
-        console.log(`Updating prerequisite: ${skill.prereq.name}`);
-        updateSkillLevelInHtmlRecursive(skill.prereq, skillCells, visited);
-      }
-
-      // Recursively update for children
-      skill.children.forEach((child) => {
-        console.log(`Updating child: ${child.name}`);
-        updateSkillLevelInHtmlRecursive(child, skillCells, visited);
-      });
-    }
-
     // Recursively update the DOM for the skill and its prerequisites
     updateSkillLevelInHtmlRecursive(skill, skillCells);
 
@@ -301,55 +318,52 @@ skillCells.forEach((cell) => {
     updateTreeSP(skill.tree);
     updateGlobalSP();
   });
+  // Long-click set skill to 0
+  longClick(cell, () => {
+    isLongClick = true;
+    skill.setLevelZero();
+    updateSkillLevelInHtmlRecursive(skill, skillCells);
+    updateTreeSP(skill.tree);
+    updateGlobalSP();
+  });
 });
 
 // ---------- JSON (Export/Import) ----------
+// Create a simplified structure with only tree names, skill names, and levels
 function exportSkillData(safeFileName) {
-  // Create a simplified structure with only tree names, skill names, and levels
   const skillData = {};
-
+  // Create an object for each tree with skill names and levels
   skillTreeArr.forEach((tree) => {
-    // Create an object for each tree with skill names and levels
     skillData[tree.name] = {};
-
     tree.skills.forEach((skill) => {
       skillData[tree.name][skill.name] = skill.level;
     });
   });
 
-  const json = JSON.stringify(skillData, null, 2); // Convert to JSON string
+  const json = JSON.stringify(skillData, null, 2);
 
-  // Create a Blob from the JSON string
   const blob = new Blob([json], { type: 'application/json' });
-
-  // Create a temporary link to trigger the download
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = safeFileName; // Set the desired file name
-
-  // Append the link, trigger the download, and remove the link
+  link.download = safeFileName;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
 
 function importSkillData(event) {
-  const file = event.target.files[0]; // Get the first selected file
-
+  const file = event.target.files[0];
   if (!file) {
     alert('No file selected');
     return;
   }
 
   const reader = new FileReader();
-
   // When the file is read successfully
   reader.onload = (e) => {
     const fileContent = e.target.result; // File content as a string
     try {
-      const importedSkillData = JSON.parse(fileContent); // Parse JSON data
-
-      // Loop through the imported skill trees
+      const importedSkillData = JSON.parse(fileContent);
       for (const treeName in importedSkillData) {
         // Find the existing tree by name
         const existingTree = skillTreeArr.find(
@@ -357,18 +371,15 @@ function importSkillData(event) {
         );
 
         if (existingTree) {
-          // Loop through the skills in the imported tree
           for (const skillName in importedSkillData[treeName]) {
-            const newLevel = importedSkillData[treeName][skillName];
-
+            const importedLevel = importedSkillData[treeName][skillName];
             // Find the existing skill by name within the tree
             const existingSkill = existingTree.skills.find(
               (skill) => skill.name === skillName
             );
 
             if (existingSkill) {
-              // Update the skill level with the imported value
-              existingSkill.level = newLevel;
+              existingSkill.level = importedLevel;
             }
           }
         }
@@ -382,7 +393,6 @@ function importSkillData(event) {
     }
   };
 
-  // Read the file as text
   reader.readAsText(file);
 }
 
@@ -409,7 +419,6 @@ function updateSkillDisplay() {
 
 const exportJsonBtn = document.getElementById('exportJsonBtn');
 exportJsonBtn.addEventListener('click', () => {
-  // Get the value of the input and trim it
   const buildFileName = document
     .getElementById('buildFileNameInput')
     .value.trim();
@@ -417,9 +426,10 @@ exportJsonBtn.addEventListener('click', () => {
   // Replace invalid characters with underscores
   let safeFileName = buildFileName.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_');
 
-  // Append .json if it doesn't already end with .json
   if (!safeFileName.endsWith('.json') && buildFileName) {
     safeFileName += '.json';
+  } else {
+    safeFileName = 'build.json';
   }
 
   console.log('File name is: ' + safeFileName);
