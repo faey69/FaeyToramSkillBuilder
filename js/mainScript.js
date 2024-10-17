@@ -11,20 +11,8 @@ class Tree {
     skillTreeArr.push(this);
   }
 
-  // Add a skill to the tree
   addSkill(skill) {
     this.skills.push(skill);
-  }
-
-  // Get a skill by its ID
-  getSkillById(id) {
-    return this.skills.find((skill) => skill.id === id);
-  }
-
-  logTree() {
-    this.skills.forEach((skill) => {
-      console.log(`Skill: ${skill.name}, Level: ${skill.level}`);
-    });
   }
 
   // Reset all skill levels to zero
