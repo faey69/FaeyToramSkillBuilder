@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faey Skillbuilder</title>
+    <link rel="stylesheet" href="twstyle.css" />
+  </head>
+  <body>
+    <div class="">
+      <!-- Main content area -->
+      <div class="flex-1 lg:ms-64">
+        <!-- lg:ms-64 is for side nav on lg screen -->
+        <!-- Top Navbar & Burger menu button -->
+        <div
+          class="p-4 bg-pink-600 text-white flex justify-between top-0 items-center fixed w-full z-40"
+        >
+          <span
+            id="globalSPSpan"
+            class="font-bold bg-red-800 outline outline-black ps-1 pe-1"
+            >Total SP: 0</span
+          >
+          <button id="burgerBtn" class="focus:outline-none lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 12h18M3 6h18M3 18h18"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Side Nav Menu -->
+        <div
+          id="sideNav"
+          class="fixed bg-pink-600 text-white w-64 h-screen top-0 left-0 transform -translate-x-full lg:translate-x-0 nav-menu z-50"
+        >
+          <div class="w-full h-full flex flex-col justify-between">
+            <ul class="space-y-6 p-4 w-full">
+              <li>
+                <label
+                  for="buildFileNameInput"
+                  class="block mb-2 text-sm font-medium text-white"
+                  >Share build:</label
+                >
+                <input
+                  class="text-black w-full rounded-lg"
+                  type="text"
+                  id="buildFileNameInput"
+                  name="buildFileNameInput"
+                  placeholder="Enter build name..."
+                />
+                <button
+                  id="exportJsonBtn"
+                  class="bg-red-800 outline outline-black rounded-lg p-1 mt-1"
+                >
+                  Download
+                </button>
+              </li>
+              <li>
+                <label
+                  for="importFile"
+                  class="block mb-2 text-sm font-medium text-white"
+                >
+                  Import build:
+                </label>
+                <input
+                  type="file"
+                  id="importFile"
+                  name="importFile"
+                  accept=".json"
+                  class="block w-full text-sm font-medium cursor-pointer text-white bg-red-800 outline outline-black rounded-lg"
+                /><br />
+              </li>
+              <li></li>
+            </ul>
+            <span
+              class="block ms-2 me-2 mb-2 mt-auto text-center outline outline-red-800 bg-pink-50 text-pink-600 p-1 font-semibold font-serif rounded-full"
+            >
+              Created by Faey
+            </span>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="p-2 mt-56px">
+          <!-- Guard Skill Tree -->
+          <div
+            id="guardSkillTree"
+            class="skillTreeMainDiv inline-block border border-blue-500 mb-4 min-w-full"
+          >
+            <div
+              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full md:w-[80vw] lg:w-[50vw] ps-8 pe-8"
+              data-tree-name="Guard Skill Tree"
+            >
+              <img
+                src="./assets/skillIcons/guardSkill/guardSkill.png"
+                alt="Guard Skill"
+                class="w-14 h-14"
+              />
+              <p
+                class="absolute left-1/2 transform -translate-x-1/2 text-center"
+              >
+                Guard Skill
+              </p>
+              <div class="flex items-center me-2">
+                <p>SP:</p>
+                <p class="treeSP ms-1" data-tree-name="Guard Skill Tree">0</p>
+              </div>
+            </div>
+
+            <div
+              class="skillTreeTableDiv hidden"
+              data-tree-name="Guard Skill Tree"
+            >
+              <table class="border-collapse table-fixed text-center">
+                <tr>
+                  <td class="border border-black w-32 h-32 p-0"></td>
+                  <td class="border border-black w-32 h-32 p-0"></td>
+                  <td
+                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                  >
+                    <div class="flex flex-col h-full">
+                      <p class="skillName">Physical Guard</p>
+                      <div class="mt-auto flex flex-col items-center">
+                        <img
+                          src="./assets/skillIcons/guardSkill/physicalGuard.png"
+                          alt="Physical Guard"
+                          class="w-14 h-14"
+                        />
+                        <p class="skillLevel">0</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                  >
+                    <div class="flex flex-col h-full">
+                      <p class="skillName">Heavy Armor Mastery</p>
+                      <div class="mt-auto flex flex-col items-center">
+                        <img
+                          src="./assets/skillIcons/guardSkill/heavyArmorMastery.png"
+                          alt="Heavy Armor Mastery"
+                          class="w-14 h-14"
+                        />
+                        <p class="skillLevel">0</p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td
+                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                  >
+                    <div class="flex flex-col h-full">
+                      <p class="skillName">Advanced Guard</p>
+                      <div class="mt-auto flex flex-col items-center">
+                        <img
+                          src="./assets/skillIcons/guardSkill/advancedGuard.png"
+                          alt="Advanced Guard"
+                          class="w-14 h-14"
+                        />
+                        <p class="skillLevel">0</p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="border border-black w-32 h-32 p-0"></td>
+                </tr>
+                <tr>
+                  <td
+                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                  >
+                    <div class="flex flex-col h-full">
+                      <p class="skillName">Light Armor Mastery</p>
+                      <div class="mt-auto flex flex-col items-center">
+                        <img
+                          src="./assets/skillIcons/guardSkill/lightArmorMastery.png"
+                          alt="Light Armor Mastery"
+                          class="w-14 h-14"
+                        />
+                        <p class="skillLevel">0</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                  >
+                    <div class="flex flex-col h-full">
+                      <p class="skillName">Advanced Evasion</p>
+                      <div class="mt-auto flex flex-col items-center">
+                        <img
+                          src="./assets/skillIcons/guardSkill/advancedEvasion.png"
+                          alt="Advanced Evasion"
+                          class="w-14 h-14"
+                        />
+                        <p class="skillLevel">0</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="border border-black w-32 h-32 p-0"></td>
+                </tr>
+                <tr>
+                  <td class="border border-black w-32 h-32 p-0"></td>
+                  <td class="border border-black w-32 h-32 p-0"></td>
+                  <td
+                    class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                  >
+                    <div class="flex flex-col h-full">
+                      <p class="skillName">Mirage Evasion</p>
+                      <div class="mt-auto flex flex-col items-center">
+                        <img
+                          src="./assets/skillIcons/guardSkill/mirageEvasion.png"
+                          alt="Mirage Evasion"
+                          class="w-14 h-14"
+                        />
+                        <p class="skillLevel">0</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <!-- Knight Skill Tree -->
+          <div
+            id="knightSkillTree"
+            class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
+          >
+            <div
+              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full md:w-[80vw] lg:w-[50vw] ps-8 pe-8"
+              data-tree-name="Knight Skill Tree"
+            >
+              <img
+                src="./assets/skillIcons/knightSkill/knightSkill.png"
+                alt="Knight Skill"
+                class="w-14 h-14"
+              />
+              <p
+                class="absolute left-1/2 transform -translate-x-1/2 text-center"
+              >
+                Knight Skill
+              </p>
+              <div class="flex items-center me-2">
+                <p>SP:</p>
+                <p class="treeSP ms-1" data-tree-name="Knight Skill Tree">0</p>
+              </div>
+            </div>
+
+            <div
+              class="skillTreeTableDiv hidden"
+              data-tree-name="Knight Skill Tree"
+            >
+              <div class="overflow-x-auto">
+                <table class="border-collapse table-fixed text-center">
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Assault Attack</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/assaultAttack.png"
+                            alt="Assault Attack"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Parry</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/parry.png"
+                            alt="Parry"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">P. Defense</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/pDefense.png"
+                            alt="P. Defense"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Fareth</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/fareth.png"
+                            alt="Fareth"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Provoke</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/provoke.png"
+                            alt="Provoke"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Rage Sword</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/rageSword.png"
+                            alt="Rage Sword"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Binding Strike</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/bindingStrike.png"
+                            alt="Binding Strike"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Knight Will</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/knightWill.png"
+                            alt="Knight Will"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Sonic Thrust</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/sonicThrust.png"
+                            alt="Sonic Thrust"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Revenir</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/revenir.png"
+                            alt="Revenir"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Knight's Stance</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/knightsStance.png"
+                            alt="Knight's Stance"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                    <td class="border border-black w-32 h-32 p-0"></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Knight's Remedy</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/knightSkill/knightsStance.png"
+                            alt="Knight's Remedy"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- End of main content -->
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/navSetup.js"></script>
+    <script src="./js/mainScript.js"></script>
+    <script src="./js/toggleTreeVisibility.js"></script>
+  </body>
+</html>
