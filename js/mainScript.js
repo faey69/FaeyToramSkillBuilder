@@ -2,6 +2,12 @@
 let globalSP = 0;
 let skillTreeArr = [];
 const skillMap = new Map(); // Eg: [{'Physical Guard', physicalGuard}, {..., ...}, ...]
+
+const treeSPElements = document.querySelectorAll('.treeSP');
+const globalSPSpan = document.querySelector('#globalSPSpan');
+const skillTreeElements = document.querySelectorAll('.skillTreeMainDiv');
+const skillCells = Array.from(document.querySelectorAll('.skill'));
+const resetAllBtn = document.getElementById('resetAllBtn');
 // -------- classes --------
 // The Skill Tree (Magic, Blade, Shoot, Hunter...)
 class Tree {
@@ -203,7 +209,6 @@ function longClick(element, callback) {
   element.addEventListener('touchcancel', mouseUp);
 }
 
-const skillTreeElements = document.querySelectorAll('.skillTreeMainDiv');
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click
   element.addEventListener('contextmenu', function (event) {
@@ -216,10 +221,24 @@ skillTreeElements.forEach((element) => {
   });
 });
 
+resetAllBtn.addEventListener('click', () => {
+  resetAllSkills();
+  updateSkillDisplay();
+});
+// ---------- SP calculations and updates ----------
+// --- Update functions ---
+function updateTreeSP(tree) {
+  treeSPElements.forEach((element) => {
+    const treeTotalLevels = tree.getTotalLevels();
+    // Update the total SP for a tree
+    if (element.getAttribute('data-tree-name') === tree.name) {
+      element.textContent = treeTotalLevels;
+    }
+  });
+}
+
 // This function updates all skills in all trees, unlike updateSkillLevelInHtmlRecursive();
 function updateSkillDisplay() {
-  const skillCells = Array.from(document.querySelectorAll('.skill'));
-
   skillTreeArr.forEach((tree) => {
     tree.skills.forEach((skill) => {
       // Find the HTML element corresponding to the skill name
@@ -255,26 +274,7 @@ function resetAllSkills() {
   updateGlobalSP();
 }
 
-const resetAllBtn = document.getElementById('resetAllBtn');
-resetAllBtn.addEventListener('click', () => {
-  resetAllSkills();
-  updateSkillDisplay();
-});
-
-// ---------- SP calculations and updates ----------
-const treeSPElements = document.querySelectorAll('.treeSP');
-const globalSPSpan = document.querySelector('#globalSPSpan');
-function updateTreeSP(tree) {
-  treeSPElements.forEach((element) => {
-    const treeTotalLevels = tree.getTotalLevels();
-    // Update the total SP for a tree
-    if (element.getAttribute('data-tree-name') === tree.name) {
-      element.textContent = treeTotalLevels;
-    }
-  });
-}
-
-const skillCells = Array.from(document.querySelectorAll('.skill'));
+// --- Calculations and Local Update of a Tree ---
 skillCells.forEach((cell) => {
   const skillName = cell.querySelector('.skillName').textContent;
   const skill = skillMap.get(skillName);
