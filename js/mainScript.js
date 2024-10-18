@@ -92,58 +92,6 @@ class Skill {
     this.setPrerequisiteLevels();
   }
 }
-
-// -------- setup & util functions --------
-function longClick(element, callback) {
-  const timeout = 400; // In ms
-  let timer;
-
-  const mouseDown = () => {
-    timer = setTimeout(() => {
-      callback();
-    }, timeout);
-  };
-
-  const mouseUp = () => {
-    clearTimeout(timer);
-  };
-
-  // Attach both mouse and touch event listeners
-  element.addEventListener('mousedown', mouseDown);
-  element.addEventListener('mouseup', mouseUp);
-  element.addEventListener('mouseleave', mouseUp);
-  element.addEventListener('touchstart', mouseDown);
-  element.addEventListener('touchend', mouseUp);
-  element.addEventListener('touchcancel', mouseUp);
-}
-
-const skillTreeElements = document.querySelectorAll('.skillTreeMainDiv');
-skillTreeElements.forEach((element) => {
-  // Prevent the context menu from appearing on right-click
-  element.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-  });
-
-  // Prevent text selection on double-click
-  element.addEventListener('selectstart', function (event) {
-    event.preventDefault();
-  });
-});
-
-function resetAllSkills() {
-  skillTreeArr.forEach((tree) => {
-    tree.resetSkillLevels();
-    updateTreeSP(tree);
-  });
-  updateGlobalSP();
-}
-
-const resetAllBtn = document.getElementById('resetAllBtn');
-resetAllBtn.addEventListener('click', () => {
-  resetAllSkills();
-  updateSkillDisplay();
-});
-
 // ---------- skill & tree initializations ----------
 // --- Guard Skill Tree ---
 const guardSkillTree = new Tree('Guard Skill Tree');
@@ -232,6 +180,87 @@ knightSkillTree.addSkill(revenir);
 knightSkillTree.addSkill(knightsStance);
 knightSkillTree.addSkill(knightsRemedy);
 
+// -------- setup & util functions --------
+function longClick(element, callback) {
+  const timeout = 400; // In ms
+  let timer;
+
+  const mouseDown = () => {
+    timer = setTimeout(() => {
+      callback();
+    }, timeout);
+  };
+
+  const mouseUp = () => {
+    clearTimeout(timer);
+  };
+
+  element.addEventListener('mousedown', mouseDown);
+  element.addEventListener('mouseup', mouseUp);
+  element.addEventListener('mouseleave', mouseUp);
+  element.addEventListener('touchstart', mouseDown);
+  element.addEventListener('touchend', mouseUp);
+  element.addEventListener('touchcancel', mouseUp);
+}
+
+const skillTreeElements = document.querySelectorAll('.skillTreeMainDiv');
+skillTreeElements.forEach((element) => {
+  // Prevent the context menu from appearing on right-click
+  element.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+  });
+
+  // Prevent text selection on double-click
+  element.addEventListener('selectstart', function (event) {
+    event.preventDefault();
+  });
+});
+
+// This function updates all skills in all trees, unlike updateSkillLevelInHtmlRecursive();
+function updateSkillDisplay() {
+  const skillCells = Array.from(document.querySelectorAll('.skill'));
+
+  skillTreeArr.forEach((tree) => {
+    tree.skills.forEach((skill) => {
+      // Find the HTML element corresponding to the skill name
+      const skillCell = skillCells.find(
+        (cell) => cell.querySelector('.skillName').textContent === skill.name
+      );
+
+      if (skillCell) {
+        // Find the <p> element that displays the skill level
+        const skillLevel = skillCell.querySelector('.skillLevel');
+        skillLevel.textContent = skill.level;
+      }
+    });
+    updateTreeSP(tree);
+  });
+  updateGlobalSP();
+}
+
+function updateGlobalSP() {
+  globalSP = 0;
+  skillTreeArr.forEach((tree) => {
+    globalSP += tree.getTotalLevels();
+  });
+
+  globalSPSpan.textContent = `Total SP: ${globalSP}`;
+}
+
+function resetAllSkills() {
+  skillTreeArr.forEach((tree) => {
+    tree.resetSkillLevels();
+    updateTreeSP(tree);
+  });
+  updateGlobalSP();
+}
+
+const resetAllBtn = document.getElementById('resetAllBtn');
+resetAllBtn.addEventListener('click', () => {
+  resetAllSkills();
+  updateSkillDisplay();
+});
+
 // ---------- SP calculations and updates ----------
 const treeSPElements = document.querySelectorAll('.treeSP');
 const globalSPSpan = document.querySelector('#globalSPSpan');
@@ -243,15 +272,6 @@ function updateTreeSP(tree) {
       element.textContent = treeTotalLevels;
     }
   });
-}
-
-function updateGlobalSP() {
-  globalSP = 0;
-  skillTreeArr.forEach((tree) => {
-    globalSP += tree.getTotalLevels();
-  });
-
-  globalSPSpan.textContent = `Total SP: ${globalSP}`;
 }
 
 const skillCells = Array.from(document.querySelectorAll('.skill'));
@@ -358,14 +378,14 @@ function exportSkillData(safeFileName) {
 function importSkillData(event) {
   const file = event.target.files[0];
   if (!file) {
-    alert('No file selected');
     return;
   }
-
+  const fileName = file.name;
   const reader = new FileReader();
   // When the file is read successfully
   reader.onload = (e) => {
     const fileContent = e.target.result; // File content as a string
+
     try {
       const importedSkillData = JSON.parse(fileContent);
       for (const treeName in importedSkillData) {
@@ -390,36 +410,33 @@ function importSkillData(event) {
       }
 
       updateSkillDisplay();
-      alert('Build successfully imported!');
+      const buildFileNameInputElement =
+        document.getElementById('buildFileNameInput');
+      // Remove the file extension by splitting the string at the last '.' and taking the first part
+      const fileNameWithoutExtension = fileName.substring(
+        0,
+        fileName.lastIndexOf('.')
+      );
+      buildFileNameInputElement.value = fileNameWithoutExtension;
     } catch (error) {
-      alert('Invalid JSON file format');
+      const lastDotIndex = fileName.lastIndexOf('.');
+
+      // Check if there is a dot and if it's not the first character (to avoid filenames like ".env")
+      const fileExtension =
+        lastDotIndex > 0
+          ? fileName.substring(lastDotIndex + 1).toLowerCase()
+          : '';
+
+      if (fileExtension === 'json') {
+        alert('Invalid JSON file format');
+      } else {
+        alert('Wrong file type');
+      }
       console.error('Error parsing JSON:', error);
     }
   };
 
   reader.readAsText(file);
-}
-
-// This function updates all skills in all trees, unlike updateSkillLevelInHtmlRecursive();
-function updateSkillDisplay() {
-  const skillCells = Array.from(document.querySelectorAll('.skill'));
-
-  skillTreeArr.forEach((tree) => {
-    tree.skills.forEach((skill) => {
-      // Find the HTML element corresponding to the skill name
-      const skillCell = skillCells.find(
-        (cell) => cell.querySelector('.skillName').textContent === skill.name
-      );
-
-      if (skillCell) {
-        // Find the <p> element that displays the skill level
-        const skillLevel = skillCell.querySelector('.skillLevel');
-        skillLevel.textContent = skill.level;
-      }
-    });
-    updateTreeSP(tree);
-  });
-  updateGlobalSP();
 }
 
 const exportJsonBtn = document.getElementById('exportJsonBtn');

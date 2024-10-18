@@ -17,18 +17,21 @@
         >
           <span
             id="globalSPSpan"
-            class="lg:ms-64 font-bold bg-red-800 outline outline-black ps-1 pe-1 rounded-lg"
+            class="lg:ms-64 font-bold bg-red-800 ps-1 pe-1 rounded-lg"
             >Total SP: 0</span
           >
 
           <button
             id="resetAllBtn"
-            class="font-bold bg-red-800 outline outline-black ps-1 pe-1 rounded-lg absolute lg:static left-1/2 transform -translate-x-1/2 lg:transform-none text-center"
+            class="font-bold bg-red-800 hover:bg-red-900 active:bg-red-600 outline outline-black ps-1 pe-1 rounded-lg absolute lg:static left-1/2 transform -translate-x-1/2 lg:transform-none text-center"
           >
             RESET ALL
           </button>
 
-          <button id="burgerBtn" class="focus:outline lg:hidden">
+          <button
+            id="burgerBtn"
+            class="lg:hidden outline outline-none focus:outline-none active:outline-black active:bg-red-800 transition-all duration-300 ease-in-out rounded-lg"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-6 h-6"
@@ -47,7 +50,7 @@
         <!-- Side Nav Menu -->
         <div
           id="sideNav"
-          class="fixed transition ease-in-out lg:transition-none overflow-y-auto bg-pink-600 text-white w-64 h-screen top-0 left-0 transform -translate-x-full lg:translate-x-0 nav-menu z-50"
+          class="fixed transition duration-300 ease-in-out lg:transition-none overflow-y-auto bg-pink-600 text-white w-64 h-screen top-0 left-0 transform -translate-x-full lg:translate-x-0 nav-menu z-50"
         >
           <div class="w-full h-full flex flex-col justify-between">
             <ul class="space-y-6 p-4 w-full">
@@ -66,7 +69,7 @@
                 />
                 <button
                   id="exportJsonBtn"
-                  class="bg-red-800 outline font-medium outline-black rounded-lg p-1 mt-2"
+                  class="bg-red-800 hover:bg-red-900 active:bg-red-600 outline font-medium w-full outline-black rounded-lg p-1 mt-2"
                 >
                   Download
                 </button>
@@ -78,13 +81,24 @@
                 >
                   Import build:
                 </label>
-                <input
-                  type="file"
-                  id="importFile"
-                  name="importFile"
-                  accept=".json"
-                  class="block w-full text-sm font-medium cursor-pointer text-white bg-red-800 outline outline-black rounded-lg"
-                /><br />
+                <div class="relative">
+                  <!-- Hidden file input -->
+                  <input
+                    type="file"
+                    id="importFile"
+                    name="importFile"
+                    accept=".json"
+                    class="absolute inset-0 w-full h-full hidden cursor-pointer"
+                  />
+
+                  <button
+                    type="button"
+                    class="block w-full text-sm font-medium text-white bg-red-800 hover:bg-red-900 active:bg-red-600 outline outline-black rounded-lg py-2"
+                    onclick="document.getElementById('importFile').click()"
+                  >
+                    Upload
+                  </button>
+                </div>
               </li>
               <li class="text-center">
                 <div
@@ -117,7 +131,7 @@
             class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
           >
             <div
-              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full md:w-[80vw] lg:w-[50vw] ps-8 pe-8"
+              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
               data-tree-name="Guard Skill Tree"
             >
               <img
@@ -126,18 +140,18 @@
                 class="w-14 h-14"
               />
               <p
-                class="absolute left-1/2 transform -translate-x-1/2 text-center"
+                class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold text-lg"
               >
                 Guard Skill
               </p>
-              <div class="flex items-center me-2">
+              <div class="flex items-center me-2 font-bold text-lg">
                 <p>SP:</p>
                 <p class="treeSP ms-1" data-tree-name="Guard Skill Tree">0</p>
               </div>
             </div>
 
             <div
-              class="skillTreeTableDiv hidden"
+              class="skillTreeTableDiv hidden transform scale-y-0 transition-transform ease-in-out duration-300 origin-top"
               data-tree-name="Guard Skill Tree"
             >
               <div class="overflow-x-auto">
@@ -146,7 +160,7 @@
                     <td class="border border-black w-32 h-32 p-0"></td>
                     <td class="border border-black w-32 h-32 p-0"></td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Physical Guard</p>
@@ -156,14 +170,14 @@
                             alt="Physical Guard"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Heavy Armor Mastery</p>
@@ -173,13 +187,13 @@
                             alt="Heavy Armor Mastery"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
 
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Advanced Guard</p>
@@ -189,7 +203,7 @@
                             alt="Advanced Guard"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
@@ -198,7 +212,7 @@
                   </tr>
                   <tr>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Light Armor Mastery</p>
@@ -208,12 +222,12 @@
                             alt="Light Armor Mastery"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Advanced Evasion</p>
@@ -223,7 +237,7 @@
                             alt="Advanced Evasion"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
@@ -233,7 +247,7 @@
                     <td class="border border-black w-32 h-32 p-0"></td>
                     <td class="border border-black w-32 h-32 p-0"></td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Mirage Evasion</p>
@@ -243,7 +257,7 @@
                             alt="Mirage Evasion"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
@@ -258,7 +272,7 @@
             class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
           >
             <div
-              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full md:w-[80vw] lg:w-[50vw] ps-8 pe-8"
+              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
               data-tree-name="Knight Skill Tree"
             >
               <img
@@ -267,25 +281,25 @@
                 class="w-14 h-14"
               />
               <p
-                class="absolute left-1/2 transform -translate-x-1/2 text-center"
+                class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold text-lg"
               >
                 Knight Skill
               </p>
-              <div class="flex items-center me-2">
+              <div class="flex items-center me-2 font-bold text-lg">
                 <p>SP:</p>
                 <p class="treeSP ms-1" data-tree-name="Knight Skill Tree">0</p>
               </div>
             </div>
 
             <div
-              class="skillTreeTableDiv hidden"
+              class="skillTreeTableDiv hidden transform scale-y-0 transition-transform ease-in-out duration-300 origin-top"
               data-tree-name="Knight Skill Tree"
             >
               <div class="overflow-x-auto">
                 <table class="border-collapse table-fixed text-center">
                   <tr>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Assault Attack</p>
@@ -295,12 +309,12 @@
                             alt="Assault Attack"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Parry</p>
@@ -310,12 +324,12 @@
                             alt="Parry"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">P. Defense</p>
@@ -325,12 +339,12 @@
                             alt="P. Defense"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Fareth</p>
@@ -340,14 +354,14 @@
                             alt="Fareth"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Provoke</p>
@@ -357,12 +371,12 @@
                             alt="Provoke"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Rage Sword</p>
@@ -372,12 +386,12 @@
                             alt="Rage Sword"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Binding Strike</p>
@@ -387,12 +401,12 @@
                             alt="Binding Strike"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Knight Will</p>
@@ -402,7 +416,7 @@
                             alt="Knight Will"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
@@ -410,7 +424,7 @@
                   <tr>
                     <td class="border border-black w-32 h-32 p-0"></td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Sonic Thrust</p>
@@ -420,12 +434,12 @@
                             alt="Sonic Thrust"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Revenir</p>
@@ -435,7 +449,7 @@
                             alt="Revenir"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
@@ -443,7 +457,7 @@
                   </tr>
                   <tr>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Knight's Stance</p>
@@ -453,14 +467,14 @@
                             alt="Knight's Stance"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
                     <td class="border border-black w-32 h-32 p-0"></td>
                     <td class="border border-black w-32 h-32 p-0"></td>
                     <td
-                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0"
+                      class="skill hover:cursor-pointer border border-black w-32 h-32 p-0 hover:bg-pink-100"
                     >
                       <div class="flex flex-col h-full">
                         <p class="skillName">Knight's Remedy</p>
@@ -470,7 +484,7 @@
                             alt="Knight's Remedy"
                             class="w-14 h-14"
                           />
-                          <p class="skillLevel">0</p>
+                          <p class="skillLevel font-bold">0</p>
                         </div>
                       </div>
                     </td>
