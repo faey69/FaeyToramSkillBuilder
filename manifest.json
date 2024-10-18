@@ -1,0 +1,19 @@
+{
+  "name": "Faey Skillbuilder",
+  "icons": [
+    {
+      "src": "appIcons/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "appIcons/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "./index.html",
+  "display_override": ["fullscreen", "minimal-ui"],
+  "display": "standalone",
+  "prefer_related_applications": false
+}
