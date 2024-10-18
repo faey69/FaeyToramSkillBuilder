@@ -141,6 +141,7 @@ function resetAllSkills() {
 const resetAllBtn = document.getElementById('resetAllBtn');
 resetAllBtn.addEventListener('click', () => {
   resetAllSkills();
+  updateSkillDisplay();
 });
 
 // ---------- skill & tree initializations ----------
@@ -258,6 +259,8 @@ skillCells.forEach((cell) => {
   const skillName = cell.querySelector('.skillName').textContent;
   const skill = skillMap.get(skillName);
   let isLongClick = false;
+
+  // Only searches within clicked skill's tree and then update only those related skills.
   function updateSkillLevelInHtmlRecursive(
     skill,
     skillCells,
@@ -397,6 +400,7 @@ function importSkillData(event) {
   reader.readAsText(file);
 }
 
+// This function updates all skills in all trees, unlike updateSkillLevelInHtmlRecursive();
 function updateSkillDisplay() {
   const skillCells = Array.from(document.querySelectorAll('.skill'));
 
