@@ -1,5 +1,6 @@
 {
   "name": "Faey Skillbuilder",
+  "short_name": "Skillbuilder",
   "icons": [
     {
       "src": "./assets/appIcons/icon512.png",

@@ -10,17 +10,24 @@
   <body>
     <div class="">
       <!-- Main content area -->
-      <div class="flex-1 lg:ms-64">
-        <!-- lg:ms-64 is for side nav on lg screen -->
+      <div class="flex-1">
         <!-- Top Navbar & Burger menu button -->
         <div
           class="p-4 bg-pink-600 text-white flex justify-between top-0 items-center fixed w-full z-40"
         >
           <span
             id="globalSPSpan"
-            class="font-bold bg-red-800 outline outline-black ps-1 pe-1 rounded-lg"
+            class="lg:ms-64 font-bold bg-red-800 outline outline-black ps-1 pe-1 rounded-lg"
             >Total SP: 0</span
           >
+
+          <button
+            id="resetAllBtn"
+            class="font-bold bg-red-800 outline outline-black ps-1 pe-1 rounded-lg absolute lg:static left-1/2 transform -translate-x-1/2 lg:transform-none text-center"
+          >
+            RESET ALL
+          </button>
+
           <button id="burgerBtn" class="focus:outline lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +110,7 @@
         </div>
 
         <!-- Main Content -->
-        <div class="p-2 mt-56px">
+        <div class="p-2 mt-56px lg:ms-64">
           <!-- Guard Skill Tree -->
           <div
             id="guardSkillTree"

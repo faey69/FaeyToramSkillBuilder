@@ -130,6 +130,19 @@ skillTreeElements.forEach((element) => {
   });
 });
 
+function resetAllSkills() {
+  skillTreeArr.forEach((tree) => {
+    tree.resetSkillLevels();
+    updateTreeSP(tree);
+  });
+  updateGlobalSP();
+}
+
+const resetAllBtn = document.getElementById('resetAllBtn');
+resetAllBtn.addEventListener('click', () => {
+  resetAllSkills();
+});
+
 // ---------- skill & tree initializations ----------
 // --- Guard Skill Tree ---
 const guardSkillTree = new Tree('Guard Skill Tree');
