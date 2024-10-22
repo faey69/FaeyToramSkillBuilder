@@ -100,91 +100,57 @@ class Skill {
 }
 // ---------- skill & tree initializations ----------
 // --- Guard Skill Tree ---
+const guardSkillsData = [
+  { name: 'Heavy Armor Mastery', prereq: null },
+  { name: 'Advanced Guard', prereq: 'Heavy Armor Mastery' },
+  { name: 'Physical Guard', prereq: 'Advanced Guard' },
+  { name: 'Light Armor Mastery', prereq: null },
+  { name: 'Advanced Evasion', prereq: 'Light Armor Mastery' },
+  { name: 'Mirage Evasion', prereq: 'Advanced Evasion' },
+];
+
 const guardSkillTree = new Tree('Guard Skill Tree');
 
-const heavyArmorMastery = new Skill(
-  'Heavy Armor Mastery',
-  0,
-  null,
-  guardSkillTree
-);
-const advancedGuard = new Skill(
-  'Advanced Guard',
-  0,
-  heavyArmorMastery,
-  guardSkillTree
-);
-const physicalGuard = new Skill(
-  'Physical Guard',
-  0,
-  advancedGuard,
-  guardSkillTree
-);
-
-const lightArmorMastery = new Skill(
-  'Light Armor Mastery',
-  0,
-  null,
-  guardSkillTree
-);
-const advancedEvasion = new Skill(
-  'Advanced Evasion',
-  0,
-  lightArmorMastery,
-  guardSkillTree
-);
-const mirageEvasion = new Skill(
-  'Mirage Evasion',
-  0,
-  advancedEvasion,
-  guardSkillTree
-);
-
-guardSkillTree.addSkill(physicalGuard);
-guardSkillTree.addSkill(heavyArmorMastery);
-guardSkillTree.addSkill(advancedGuard);
-guardSkillTree.addSkill(lightArmorMastery);
-guardSkillTree.addSkill(advancedEvasion);
-guardSkillTree.addSkill(mirageEvasion);
+guardSkillsData.forEach((guardSkillData) => {
+  // String of guardSkillData.prereq to get prereq's skill obj from skillMap
+  const prereqSkill = guardSkillData.prereq
+    ? skillMap.get(guardSkillData.prereq)
+    : null;
+  const skill = new Skill(guardSkillData.name, 0, prereqSkill, guardSkillTree);
+  guardSkillTree.addSkill(skill);
+});
 
 // --- Knight Skill Tree ---
+const knightSkillsData = [
+  { name: 'Assault Attack', prereq: null },
+  { name: 'Parry', prereq: 'Assault Attack' },
+  { name: 'P. Defense', prereq: 'Parry' },
+  { name: 'Fareth', prereq: 'P. Defense' },
+  { name: 'Provoke', prereq: null },
+  { name: 'Rage Sword', prereq: 'Provoke' },
+  { name: 'Binding Strike', prereq: 'Rage Sword' },
+  { name: 'Knight Will', prereq: 'Binding Strike' },
+  { name: 'Sonic Thrust', prereq: 'Rage Sword' },
+  { name: 'Revenir', prereq: 'Sonic Thrust' },
+  { name: "Knight's Stance", prereq: null },
+  { name: "Knight's Remedy", prereq: "Knight's Stance" },
+];
+
 const knightSkillTree = new Tree('Knight Skill Tree');
 
-const assaultAttack = new Skill('Assault Attack', 0, null, knightSkillTree);
-const parry = new Skill('Parry', 0, assaultAttack, knightSkillTree);
-const pDefense = new Skill('P. Defense', 0, parry, knightSkillTree);
-const fareth = new Skill('Fareth', 0, pDefense, knightSkillTree);
-const provoke = new Skill('Provoke', 0, null, knightSkillTree);
-const rageSword = new Skill('Rage Sword', 0, provoke, knightSkillTree);
-const bindingStrike = new Skill(
-  'Binding Strike',
-  0,
-  rageSword,
-  knightSkillTree
-);
-const knightWill = new Skill('Knight Will', 0, bindingStrike, knightSkillTree);
-const sonicThrust = new Skill('Sonic Thrust', 0, rageSword, knightSkillTree);
-const revenir = new Skill('Revenir', 0, sonicThrust, knightSkillTree);
-const knightsStance = new Skill("Knight's Stance", 0, null, knightSkillTree);
-const knightsRemedy = new Skill(
-  "Knight's Remedy",
-  0,
-  knightsStance,
-  knightSkillTree
-);
-
-knightSkillTree.addSkill(assaultAttack);
-knightSkillTree.addSkill(parry);
-knightSkillTree.addSkill(pDefense);
-knightSkillTree.addSkill(fareth);
-knightSkillTree.addSkill(provoke);
-knightSkillTree.addSkill(rageSword);
-knightSkillTree.addSkill(bindingStrike);
-knightSkillTree.addSkill(knightWill);
-knightSkillTree.addSkill(sonicThrust);
-knightSkillTree.addSkill(revenir);
-knightSkillTree.addSkill(knightsStance);
-knightSkillTree.addSkill(knightsRemedy);
+knightSkillsData.forEach((knightSkillData) => {
+  // String of knightSkillData.prereq to get prereq's skill obj from skillMap
+  const prereqSkill = knightSkillData.prereq
+    ? skillMap.get(knightSkillData.prereq)
+    : null;
+  const skill = new Skill(
+    knightSkillData.name,
+    0,
+    prereqSkill,
+    knightSkillTree
+  );
+  knightSkillTree.addSkill(skill);
+});
 
 // -------- setup & util functions --------
 function longClick(element, callback) {
