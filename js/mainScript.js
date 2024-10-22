@@ -281,7 +281,6 @@ skillCells.forEach((cell) => {
   }
 
   cell.addEventListener('mousedown', (event) => {
-    console.log('isLongClick: ' + isLongClick);
     if (isLongClick) {
       // Prevent the regular click
       isLongClick = false;

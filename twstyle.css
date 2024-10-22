@@ -754,6 +754,10 @@ video {
   overflow-y: auto;
 }
 
+.overscroll-contain {
+  overscroll-behavior: contain;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
