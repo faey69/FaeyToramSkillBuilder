@@ -36,7 +36,7 @@ class Tree {
 
 class Skill {
   constructor(name, level = 0, prereq = null, tree) {
-    this.name = name; // The id attribute of the skill in the <img> element
+    this.name = name;
     this.level = level; // Skill level (0-10)
     this.prereq = prereq; // Prerequisite skill
     this.tree = tree; // The skill tree it belongs to
