@@ -2,6 +2,7 @@
 let globalSP = 0;
 let skillTreeArr = [];
 const skillMap = new Map(); // Eg: [{'Physical Guard', physicalGuard}, {..., ...}, ...]
+let isLongClick = false;
 
 const treeSPElements = document.querySelectorAll('.treeSP');
 const globalSPSpan = document.querySelector('#globalSPSpan');
@@ -156,11 +157,13 @@ function longClick(element, callback) {
   const mouseDown = () => {
     timer = setTimeout(() => {
       callback();
+      isLongClick = false;
     }, timeout);
   };
 
   const mouseUp = () => {
     clearTimeout(timer);
+    isLongClick = false;
   };
 
   element.addEventListener('mousedown', mouseDown);
@@ -240,7 +243,6 @@ function resetAllSkills() {
 skillCells.forEach((cell) => {
   const skillName = cell.querySelector('.skillName').textContent;
   const skill = skillMap.get(skillName);
-  let isLongClick = false;
 
   // Only searches within clicked skill's tree and then update only those related skills.
   function updateSkillLevelInHtmlRecursive(
@@ -279,6 +281,7 @@ skillCells.forEach((cell) => {
   }
 
   cell.addEventListener('mousedown', (event) => {
+    console.log('isLongClick: ' + isLongClick);
     if (isLongClick) {
       // Prevent the regular click
       isLongClick = false;
