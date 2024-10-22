@@ -32,6 +32,23 @@ class Tree {
   getTotalLevels() {
     return this.skills.reduce((total, skill) => total + skill.level, 0);
   }
+
+  /**
+   * Initializes the skill tree by adding skills defined in the provided skillsData array.
+   * Each skill is created based on its name and prerequisite, which is retrieved from skillMap.
+   *
+   * @param {Array} skillsData - An array of skill objects, each containing a name and an optional prerequisite.
+   */
+  initializeSkillTree(skillsData) {
+    skillsData.forEach((skillData) => {
+      // String of skillData.prereq to get prereq's skill obj from skillMap
+      const prereqSkill = skillData.prereq
+        ? skillMap.get(skillData.prereq)
+        : null;
+      const skill = new Skill(skillData.name, 0, prereqSkill, this);
+      this.addSkill(skill);
+    });
+  }
 }
 
 class Skill {
@@ -110,15 +127,7 @@ const guardSkillsData = [
 ];
 
 const guardSkillTree = new Tree('Guard Skill Tree');
-
-guardSkillsData.forEach((guardSkillData) => {
-  // String of guardSkillData.prereq to get prereq's skill obj from skillMap
-  const prereqSkill = guardSkillData.prereq
-    ? skillMap.get(guardSkillData.prereq)
-    : null;
-  const skill = new Skill(guardSkillData.name, 0, prereqSkill, guardSkillTree);
-  guardSkillTree.addSkill(skill);
-});
+guardSkillTree.initializeSkillTree(guardSkillsData);
 
 // --- Knight Skill Tree ---
 const knightSkillsData = [
@@ -137,20 +146,7 @@ const knightSkillsData = [
 ];
 
 const knightSkillTree = new Tree('Knight Skill Tree');
-
-knightSkillsData.forEach((knightSkillData) => {
-  // String of knightSkillData.prereq to get prereq's skill obj from skillMap
-  const prereqSkill = knightSkillData.prereq
-    ? skillMap.get(knightSkillData.prereq)
-    : null;
-  const skill = new Skill(
-    knightSkillData.name,
-    0,
-    prereqSkill,
-    knightSkillTree
-  );
-  knightSkillTree.addSkill(skill);
-});
+knightSkillTree.initializeSkillTree(knightSkillsData);
 
 // -------- setup & util functions --------
 function longClick(element, callback) {
