@@ -2,7 +2,6 @@
 let globalSP = 0;
 let skillTreeArr = [];
 const skillMap = new Map(); // Eg: [{'Physical Guard', physicalGuard}, {..., ...}, ...]
-let isLongClick = false;
 
 const treeSPElements = document.querySelectorAll('.treeSP');
 const globalSPSpan = document.querySelector('#globalSPSpan');
@@ -118,88 +117,22 @@ class Skill {
 }
 // ---------- skill & tree initializations ----------
 // --- Guard Skill Tree ---
-const guardSkillsData = [
-  { name: 'Heavy Armor Mastery', prereq: null },
-  { name: 'Advanced Guard', prereq: 'Heavy Armor Mastery' },
-  { name: 'Physical Guard', prereq: 'Advanced Guard' },
-  { name: 'Light Armor Mastery', prereq: null },
-  { name: 'Advanced Evasion', prereq: 'Light Armor Mastery' },
-  { name: 'Mirage Evasion', prereq: 'Advanced Evasion' },
-];
-
 const guardSkillTree = new Tree('Guard Skill Tree');
 guardSkillTree.initializeSkillTree(guardSkillsData);
 
 // --- Knight Skill Tree ---
-const knightSkillsData = [
-  { name: 'Assault Attack', prereq: null },
-  { name: 'Parry', prereq: 'Assault Attack' },
-  { name: 'P. Defense', prereq: 'Parry' },
-  { name: 'Fareth', prereq: 'P. Defense' },
-  { name: 'Provoke', prereq: null },
-  { name: 'Rage Sword', prereq: 'Provoke' },
-  { name: 'Binding Strike', prereq: 'Rage Sword' },
-  { name: 'Knight Will', prereq: 'Binding Strike' },
-  { name: 'Sonic Thrust', prereq: 'Rage Sword' },
-  { name: 'Revenir', prereq: 'Sonic Thrust' },
-  { name: "Knight's Stance", prereq: null },
-  { name: "Knight's Remedy", prereq: "Knight's Stance" },
-];
-
 const knightSkillTree = new Tree('Knight Skill Tree');
 knightSkillTree.initializeSkillTree(knightSkillsData);
 
 // --- Blade Skill Tree ---
-const bladeSkillsData = [
-  { name: 'Hard Hit', prereq: null },
-  { name: 'Astute', prereq: 'Hard Hit' },
-  { name: 'Trigger Slash', prereq: 'Astute' },
-  { name: 'Rampage', prereq: 'Trigger Slash' },
-  { name: 'Shut-Out', prereq: 'Rampage' },
-  { name: 'Meteor Breaker', prereq: 'Trigger Slash' },
-  { name: 'Lunar Slash', prereq: 'Meteor Breaker' },
-  { name: 'Sonic Blade', prereq: 'Hard Hit' },
-  { name: 'Spiral Air', prereq: 'Sonic Blade' },
-  { name: 'Sword Tempest', prereq: 'Spiral Air' },
-  { name: 'Buster Blade', prereq: 'Spiral Air' },
-  { name: 'Aura Blade', prereq: 'Buster Blade' },
-  { name: 'Sword Mastery', prereq: null },
-  { name: 'Quick Slash', prereq: 'Sword Mastery' },
-  { name: 'Sword Techniques', prereq: 'Quick Slash' },
-  { name: 'War Cry', prereq: 'Quick Slash' },
-  { name: 'Berserk', prereq: 'War Cry' },
-  { name: 'Gladiate', prereq: 'Berserk' },
-  { name: 'Swift Attack', prereq: null },
-];
-
 const bladeSkillTree = new Tree('Blade Skill Tree');
 bladeSkillTree.initializeSkillTree(bladeSkillsData);
 
-// -------- setup & util functions --------
-function longClick(element, callback) {
-  const timeout = 400; // In ms
-  let timer;
+// --- Martial Skill Tree ---
+const martialSkillTree = new Tree('Martial Skill Tree');
+martialSkillTree.initializeSkillTree(martialSkillsData);
 
-  const mouseDown = () => {
-    timer = setTimeout(() => {
-      callback();
-      isLongClick = false;
-    }, timeout);
-  };
-
-  const mouseUp = () => {
-    clearTimeout(timer);
-    isLongClick = false;
-  };
-
-  element.addEventListener('mousedown', mouseDown);
-  element.addEventListener('mouseup', mouseUp);
-  element.addEventListener('mouseleave', mouseUp);
-  element.addEventListener('touchstart', mouseDown);
-  element.addEventListener('touchend', mouseUp);
-  element.addEventListener('touchcancel', mouseUp);
-}
-
+// ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click
   element.addEventListener('contextmenu', function (event) {
@@ -307,11 +240,6 @@ skillCells.forEach((cell) => {
   }
 
   cell.addEventListener('mousedown', (event) => {
-    if (isLongClick) {
-      // Prevent the regular click
-      isLongClick = false;
-      return;
-    }
     const isCtrlPressed = event.ctrlKey;
     const isRightClick = event.button === 2;
 
@@ -332,9 +260,9 @@ skillCells.forEach((cell) => {
     updateTreeSP(skill.tree);
     updateGlobalSP();
   });
-  // Long-click set skill to 0
-  longClick(cell, () => {
-    isLongClick = true;
+
+  cell.addEventListener('long-press', (event) => {
+    event.preventDefault();
     skill.setLevelZero();
     updateSkillLevelInHtmlRecursive(skill, skillCells);
     updateTreeSP(skill.tree);

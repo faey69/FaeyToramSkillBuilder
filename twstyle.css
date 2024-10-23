@@ -660,8 +660,24 @@ video {
   height: 100%;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
+.max-h-32 {
+  max-height: 8rem;
+}
+
+.max-h-36 {
+  max-height: 9rem;
+}
+
 .min-h-32 {
   min-height: 8rem;
+}
+
+.min-h-36 {
+  min-height: 9rem;
 }
 
 .w-14 {
@@ -680,8 +696,24 @@ video {
   width: 100%;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
 .min-w-32 {
   min-width: 8rem;
+}
+
+.min-w-36 {
+  min-width: 9rem;
+}
+
+.max-w-32 {
+  max-width: 8rem;
+}
+
+.max-w-36 {
+  max-width: 9rem;
 }
 
 .flex-1 {
