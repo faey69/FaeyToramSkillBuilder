@@ -3,10 +3,12 @@ let globalSP = 0;
 let skillTreeArr = [];
 const skillMap = new Map(); // Eg: [{'Physical Guard', physicalGuard}, {..., ...}, ...]
 
-const treeSPElements = document.querySelectorAll('.treeSP');
-const globalSPSpan = document.querySelector('#globalSPSpan');
-const skillTreeElements = document.querySelectorAll('.skillTreeMainDiv');
-const skillCells = Array.from(document.querySelectorAll('.skill'));
+const treeSPElements = Array.from(document.getElementsByClassName('treeSP'));
+const globalSPSpan = document.getElementById('globalSPSpan');
+const skillTreeElements = Array.from(
+  document.getElementsByClassName('skillTreeMainDiv')
+);
+const skillCells = Array.from(document.getElementsByClassName('skill'));
 const resetAllBtn = document.getElementById('resetAllBtn');
 // -------- classes --------
 // The Skill Tree (Magic, Blade, Shoot, Hunter...)
@@ -57,7 +59,7 @@ class Skill {
     this.level = level; // Skill level (0-10)
     this.prereq = prereq; // Prerequisite skill
     this.tree = tree; // The skill tree it belongs to
-    this.children = []; // Dependent skills (immediate descendents)
+    this.children = []; // Dependent skills (immediate descendents). One skill can be a prereq to multiple skills
     if (prereq) {
       prereq.addChild(this); // Add this skill as a child to its prerequisite
     }
@@ -269,118 +271,3 @@ skillCells.forEach((cell) => {
     updateGlobalSP();
   });
 });
-
-// ---------- JSON (Export/Import) ----------
-// Create a simplified structure with only tree names, skill names, and levels
-function exportSkillData(safeFileName) {
-  const skillData = {};
-  // Create an object for each tree with skill names and levels
-  skillTreeArr.forEach((tree) => {
-    skillData[tree.name] = {};
-    tree.skills.forEach((skill) => {
-      skillData[tree.name][skill.name] = skill.level;
-    });
-  });
-
-  const json = JSON.stringify(skillData, null, 2);
-
-  const blob = new Blob([json], { type: 'application/json' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = safeFileName;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-function importSkillData(event) {
-  const file = event.target.files[0];
-  if (!file) {
-    return;
-  }
-  const fileName = file.name;
-  const reader = new FileReader();
-  // When the file is read successfully
-  reader.onload = (e) => {
-    const fileContent = e.target.result; // File content as a string
-
-    try {
-      const importedSkillData = JSON.parse(fileContent);
-      for (const treeName in importedSkillData) {
-        // Find the existing tree by name
-        const existingTree = skillTreeArr.find(
-          (tree) => tree.name === treeName
-        );
-
-        if (existingTree) {
-          for (const skillName in importedSkillData[treeName]) {
-            const importedLevel = importedSkillData[treeName][skillName];
-            // Find the existing skill by name within the tree
-            const existingSkill = existingTree.skills.find(
-              (skill) => skill.name === skillName
-            );
-
-            if (existingSkill) {
-              existingSkill.level = importedLevel;
-            }
-          }
-        }
-      }
-
-      updateSkillDisplay();
-      const buildFileNameInputElement =
-        document.getElementById('buildFileNameInput');
-      // Remove the file extension by splitting the string at the last '.' and taking the first part
-      const fileNameWithoutExtension = fileName.substring(
-        0,
-        fileName.lastIndexOf('.')
-      );
-      buildFileNameInputElement.value = fileNameWithoutExtension;
-    } catch (error) {
-      const lastDotIndex = fileName.lastIndexOf('.');
-
-      // Check if there is a dot and if it's not the first character (to avoid filenames like ".env")
-      const fileExtension =
-        lastDotIndex > 0
-          ? fileName.substring(lastDotIndex + 1).toLowerCase()
-          : '';
-
-      if (fileExtension === 'json') {
-        alert('Invalid JSON file format');
-      } else {
-        alert('Wrong file type');
-      }
-      console.error('Error parsing JSON:', error);
-    }
-  };
-
-  reader.readAsText(file);
-}
-
-const exportJsonBtn = document.getElementById('exportJsonBtn');
-exportJsonBtn.addEventListener('click', () => {
-  const buildFileName = document
-    .getElementById('buildFileNameInput')
-    .value.trim();
-
-  // Replace invalid characters with underscores
-  let safeFileName = buildFileName.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_');
-
-  if (!safeFileName.endsWith('.json') && buildFileName) {
-    safeFileName += '.json';
-  } else {
-    safeFileName = 'build.json';
-  }
-
-  console.log('File name is: ' + safeFileName);
-  exportSkillData(safeFileName);
-});
-
-const fileInput = document.getElementById('importFile');
-if (fileInput) {
-  fileInput.addEventListener('change', function (event) {
-    importSkillData(event);
-  });
-} else {
-  console.error('File input element not found');
-}
