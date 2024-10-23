@@ -131,7 +131,7 @@
             class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
           >
             <div
-              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
+              class="skillTreeHeader hover:cursor-pointer border bg-pink-300 border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
               data-tree-name="Guard Skill Tree"
             >
               <img
@@ -144,7 +144,9 @@
               >
                 Guard Skill
               </p>
-              <div class="flex items-center me-2 font-bold text-lg">
+              <div
+                class="flex items-center me-2 font-bold text-lg bg-pink-50 rounded-lg px-1"
+              >
                 <p>SP:</p>
                 <p class="treeSP ms-1" data-tree-name="Guard Skill Tree">0</p>
               </div>
@@ -284,7 +286,7 @@
             class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
           >
             <div
-              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
+              class="skillTreeHeader hover:cursor-pointer border bg-pink-300 border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
               data-tree-name="Knight Skill Tree"
             >
               <img
@@ -297,7 +299,9 @@
               >
                 Knight Skill
               </p>
-              <div class="flex items-center me-2 font-bold text-lg">
+              <div
+                class="flex items-center me-2 font-bold text-lg bg-pink-50 rounded-lg px-1"
+              >
                 <p>SP:</p>
                 <p class="treeSP ms-1" data-tree-name="Knight Skill Tree">0</p>
               </div>
@@ -519,7 +523,7 @@
             class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
           >
             <div
-              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
+              class="skillTreeHeader hover:cursor-pointer border bg-pink-300 border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
               data-tree-name="Blade Skill Tree"
             >
               <img
@@ -532,7 +536,9 @@
               >
                 Blade Skill
               </p>
-              <div class="flex items-center me-2 font-bold text-lg">
+              <div
+                class="flex items-center me-2 font-bold text-lg bg-pink-50 rounded-lg px-1"
+              >
                 <p>SP:</p>
                 <p class="treeSP ms-1" data-tree-name="Blade Skill Tree">0</p>
               </div>
@@ -945,7 +951,7 @@
             class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
           >
             <div
-              class="skillTreeHeader hover:cursor-pointer border border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
+              class="skillTreeHeader hover:cursor-pointer border bg-pink-300 border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
               data-tree-name="Martial Skill Tree"
             >
               <img
@@ -958,7 +964,9 @@
               >
                 Martial Skill
               </p>
-              <div class="flex items-center me-2 font-bold text-lg">
+              <div
+                class="flex items-center me-2 font-bold text-lg bg-pink-50 rounded-lg px-1"
+              >
                 <p>SP:</p>
                 <p class="treeSP ms-1" data-tree-name="Martial Skill Tree">0</p>
               </div>
@@ -1358,6 +1366,889 @@
                     <td
                       class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
                     ></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Shot Skill Tree -->
+          <div
+            id="shotSkillTree"
+            class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
+          >
+            <div
+              class="skillTreeHeader hover:cursor-pointer border bg-pink-300 border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
+              data-tree-name="Shot Skill Tree"
+            >
+              <img
+                src="./assets/skillIcons/shotSkill/shotSkill.png"
+                alt="Shot Skill"
+                class="w-14 h-14"
+              />
+              <p
+                class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold text-lg"
+              >
+                Shot Skill
+              </p>
+              <div
+                class="flex items-center me-2 font-bold text-lg bg-pink-50 rounded-lg px-1"
+              >
+                <p>SP:</p>
+                <p class="treeSP ms-1" data-tree-name="Shot Skill Tree">0</p>
+              </div>
+            </div>
+
+            <div
+              class="skillTreeTableDiv hidden transform scale-y-0 transition-transform ease-in-out duration-300 origin-top"
+              data-tree-name="Shot Skill Tree"
+            >
+              <div class="overflow-x-auto">
+                <table class="border-collapse table-fixed text-center">
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Snipe</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/snipe.png"
+                            alt="Snipe"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Vanquisher</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/vanquisher.png"
+                            alt="Vanquisher"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Twin Storm</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/twinStorm.png"
+                            alt="Twin Storm"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Power Shot</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/powerShot.png"
+                            alt="Power Shot"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Bullseye</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/bullseye.png"
+                            alt="Bullseye"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Arrow Rain</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/arrowRain.png"
+                            alt="Arrow Rain"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Cross Fire</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/crossFire.png"
+                            alt="Cross Fire"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Quick Loader</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/crossFire.png"
+                            alt="Quick Loader"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Retrograde Shot</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/retrogradeShot.png"
+                            alt="Retrograde Shot"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Moeba Shot</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/moebaShot.png"
+                            alt="Moeba Shot"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Paralysis Shot</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/paralysisShot.png"
+                            alt="Paralysis Shot"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Smoke Dust</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/smokeDust.png"
+                            alt="Smoke Dust"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Arm Break</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/armBreak.png"
+                            alt="Arm Break"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Parabola Cannon</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/parabolaCannon.png"
+                            alt="Parabola Cannon"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Samurai Archery</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/samuraiArchery.png"
+                            alt="Samurai Archery"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Shot Mastery</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/shotMastery.png"
+                            alt="Shot Mastery"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Sneak Attack</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/sneakAttack.png"
+                            alt="Sneak Attack"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Long Range</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/longRange.png"
+                            alt="Long Range"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Quick Draw</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/quickDraw.png"
+                            alt="Quick Draw"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Decoy Shot</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/shotSkill/decoyShot.png"
+                            alt="Decoy Shot"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Magic Skill Tree -->
+          <div
+            id="magicSkillTree"
+            class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
+          >
+            <div
+              class="skillTreeHeader hover:cursor-pointer border bg-pink-300 border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
+              data-tree-name="Magic Skill Tree"
+            >
+              <img
+                src="./assets/skillIcons/magicSkill/magicSkill.png"
+                alt="Magic Skill"
+                class="w-14 h-14"
+              />
+              <p
+                class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold text-lg"
+              >
+                Magic Skill
+              </p>
+              <div
+                class="flex items-center me-2 font-bold text-lg bg-pink-50 rounded-lg px-1"
+              >
+                <p>SP:</p>
+                <p class="treeSP ms-1" data-tree-name="Magic Skill Tree">0</p>
+              </div>
+            </div>
+
+            <div
+              class="skillTreeTableDiv hidden transform scale-y-0 transition-transform ease-in-out duration-300 origin-top"
+              data-tree-name="Magic Skill Tree"
+            >
+              <div class="overflow-x-auto">
+                <table class="border-collapse table-fixed text-center">
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Javelin</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/javelin.png"
+                            alt="Magic: Javelin"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Lances</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/lances.png"
+                            alt="Magic: Lances"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Impact</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/impact.png"
+                            alt="Magic: Impact"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Finale</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/finale.png"
+                            alt="Magic: Finale"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Chronos Shift</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/chronosShift.png"
+                            alt="Chronos Shift"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Arrows</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/arrows.png"
+                            alt="Magic: Arrows"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Wall</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/wall.png"
+                            alt="Magic: Wall"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Blast</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/blast.png"
+                            alt="Magic: Blast"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Storm</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/storm.png"
+                            alt="Magic: Storm"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Burst</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/burst.png"
+                            alt="Magic: Burst"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Magic Cannon</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/magicCannon.png"
+                            alt="Magic: Magic Cannon"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic Mastery</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/magicMastery.png"
+                            alt="Magic Mastery"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic Knife</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/magicKnife.png"
+                            alt="Magic Knife"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Qadal</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/qadal.png"
+                            alt="Qadal"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Crash</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/crash.png"
+                            alt="Magic: Crash"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">MP Charge</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/mpCharge.png"
+                            alt="MP Charge"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Chain Cast</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/chainCast.png"
+                            alt="Chain Cast"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Power Wave</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/powerWave.png"
+                            alt="Power Wave"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Maximizer</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/maximizer.png"
+                            alt="Maximizer"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Rapid Charge</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/mpCharge.png"
+                            alt="Rapid Charge"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic: Guardian Beam</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/guardianBeam.png"
+                            alt="Magic: Guardian Beam"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border border-black min-w-32 min-h-32 w-32 h-32 p-1"
+                    ></td>
+                    <td
+                      class="skill hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100"
+                    >
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Enchanted Barriers</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/magicSkill/enchantedBarriers.png"
+                            alt="Enchanted Barriers"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 </table>
               </div>

@@ -69,3 +69,53 @@ const martialSkillsData = [
   { name: 'Strong Chase Attack', prereq: 'Aggravate' },
   { name: 'Slide', prereq: null },
 ];
+
+// --- Shot Skill Tree ---
+const shotSkillsData = [
+  { name: 'Power Shot', prereq: null },
+  { name: 'Bullseye', prereq: 'Power Shot' },
+  { name: 'Snipe', prereq: 'Bullseye' },
+  { name: 'Vanquisher', prereq: 'Snipe' },
+  { name: 'Arrow Rain', prereq: 'Bullseye' },
+  { name: 'Cross Fire', prereq: 'Arrow Rain' },
+  { name: 'Twin Storm', prereq: 'Cross Fire' },
+  { name: 'Quick Loader', prereq: 'Cross Fire' },
+  { name: 'Retrograde Shot', prereq: 'Cross Fire' },
+  { name: 'Moeba Shot', prereq: 'Power Shot' },
+  { name: 'Paralysis Shot', prereq: 'Moeba Shot' },
+  { name: 'Smoke Dust', prereq: 'Paralysis Shot' },
+  { name: 'Arm Break', prereq: 'Smoke Dust' },
+  { name: 'Parabola Cannon', prereq: 'Arm Break' },
+  { name: 'Shot Mastery', prereq: null },
+  { name: 'Samurai Archery', prereq: 'Shot Mastery' },
+  { name: 'Sneak Attack', prereq: 'Shot Mastery' },
+  { name: 'Long Range', prereq: 'Shot Mastery' },
+  { name: 'Quick Draw', prereq: 'Long Range' },
+  { name: 'Decoy Shot', prereq: 'Quick Draw' },
+];
+
+// --- Magic Skill Tree ---
+const magicSkillsData = [
+  { name: 'Magic: Arrows', prereq: null },
+  { name: 'Magic: Javelin', prereq: 'Magic: Arrows' },
+  { name: 'Magic: Lances', prereq: 'Magic: Javelin' },
+  { name: 'Magic: Impact', prereq: 'Magic: Lances' },
+  { name: 'Magic: Finale', prereq: 'Magic: Impact' },
+  { name: 'Chronos Shift', prereq: 'Magic: Finale' },
+  { name: 'Magic: Wall', prereq: 'Magic: Arrows' },
+  { name: 'Magic: Blast', prereq: 'Magic: Wall' },
+  { name: 'Magic: Storm', prereq: 'Magic: Blast' },
+  { name: 'Magic: Burst', prereq: 'Magic: Storm' },
+  { name: 'Magic: Magic Cannon', prereq: 'Magic: Burst' },
+  { name: 'Magic Mastery', prereq: null },
+  { name: 'Magic Knife', prereq: 'Magic Mastery' },
+  { name: 'Qadal', prereq: 'Magic Knife' },
+  { name: 'Magic: Crash', prereq: 'Magic: Storm' },
+  { name: 'MP Charge', prereq: null },
+  { name: 'Chain Cast', prereq: 'MP Charge' },
+  { name: 'Power Wave', prereq: 'Chain Cast' },
+  { name: 'Maximizer', prereq: 'Power Wave' },
+  { name: 'Rapid Charge', prereq: 'Maximizer' },
+  { name: 'Magic: Guardian Beam', prereq: null },
+  { name: 'Enchanted Barriers', prereq: 'Maximizer' },
+];
