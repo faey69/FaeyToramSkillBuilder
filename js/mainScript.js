@@ -142,6 +142,14 @@ shotSkillTree.initializeSkillTree(shotSkillsData);
 const magicSkillTree = new Tree('Magic Skill Tree');
 magicSkillTree.initializeSkillTree(magicSkillsData);
 
+// --- Mononofu Skill Tree ---
+const mononofuSkillTree = new Tree('Mononofu Skill Tree');
+mononofuSkillTree.initializeSkillTree(mononofuSkillsData);
+
+// --- Priest Skill Tree ---
+const priestSkillTree = new Tree('Priest Skill Tree');
+priestSkillTree.initializeSkillTree(priestSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click

@@ -79,6 +79,9 @@ function importSkillData(event) {
         alert('Wrong file type');
       }
       console.error('Error parsing JSON:', error);
+    } finally {
+      // This makes sure that importing the same file name will work (allows onChange event to be triggered)
+      fileInput.value = '';
     }
   };
 
@@ -105,10 +108,6 @@ exportJsonBtn.addEventListener('click', () => {
 });
 
 const fileInput = document.getElementById('importFile');
-if (fileInput) {
-  fileInput.addEventListener('change', function (event) {
-    importSkillData(event);
-  });
-} else {
-  console.error('File input element not found');
-}
+fileInput.addEventListener('change', function (event) {
+  importSkillData(event);
+});

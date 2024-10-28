@@ -119,3 +119,42 @@ const magicSkillsData = [
   { name: 'Magic: Guardian Beam', prereq: null },
   { name: 'Enchanted Barriers', prereq: 'Maximizer' },
 ];
+
+// --- Mononofu Skill Tree ---
+const mononofuSkillsData = [
+  { name: 'Issen', prereq: null },
+  { name: 'Pulse Blade', prereq: 'Issen' },
+  { name: 'Triple Thrust', prereq: 'Pulse Blade' },
+  { name: 'Hasso Happa', prereq: 'Triple Thrust' },
+  { name: 'Tenryu Ransei', prereq: 'Hasso Happa' },
+  { name: 'Kasumisetsu Getsuka', prereq: 'Tenryu Ransei' },
+  { name: 'Pommel Strike', prereq: null },
+  { name: 'Magadachi', prereq: 'Pommel Strike' },
+  { name: 'Zantei Settetsu', prereq: 'Magadachi' },
+  { name: 'Garyou Tensei', prereq: 'Hasso Happa' },
+  { name: 'Shadowless Slash', prereq: 'Garyou Tensei' },
+  { name: 'Bushido', prereq: null },
+  { name: 'Shukuchi', prereq: 'Bushido' },
+  { name: 'Nukiuchi Sennosen', prereq: 'Shukuchi' },
+  { name: 'Two-Handed', prereq: 'Bushido' },
+  { name: 'Meikyo Shisui', prereq: 'Two-Handed' },
+  { name: 'Kairiki Ranshin', prereq: 'Meikyo Shisui' },
+  { name: 'Dauntless', prereq: 'Kairiki Ranshin' },
+  { name: 'Bouncing Blade', prereq: null },
+];
+
+// --- Priest Skill Tree ---
+const priestSkillsData = [
+  { name: 'Bless', prereq: null },
+  { name: 'Gloria', prereq: 'Bless' },
+  { name: 'Enhanced Bless', prereq: 'Gloria' },
+  { name: 'Royal Heal', prereq: 'Enhanced Bless' },
+  { name: 'Holy Fist', prereq: null },
+  { name: 'Holy Light', prereq: 'Holy Fist' },
+  { name: 'Ether Barrier', prereq: 'Holy Light' },
+  { name: 'Prayer', prereq: 'Ether Barrier' },
+  { name: 'Staff Thrust', prereq: null },
+  { name: 'Exorcism', prereq: 'Holy Light' },
+  { name: 'Holy Book', prereq: 'Exorcism' },
+  { name: 'Nemesis', prereq: 'Holy Book' },
+];
