@@ -158,3 +158,25 @@ const priestSkillsData = [
   { name: 'Holy Book', prereq: 'Exorcism' },
   { name: 'Nemesis', prereq: 'Holy Book' },
 ];
+
+// --- Dual Sword Skill Tree ---
+const dualSwordSkillsData = [
+  { name: 'Dual Sword Mastery', prereq: null },
+  { name: 'Twin Slash', prereq: 'Dual Sword Mastery' },
+  { name: 'Spinning Slash', prereq: 'Twin Slash' },
+  { name: 'Phantom Slash', prereq: 'Spinning Slash' },
+  { name: 'Aerial Cut', prereq: 'Spinning Slash' },
+  { name: 'Cross Parry', prereq: 'Dual Sword Mastery' },
+  { name: 'Charging Slash', prereq: 'Cross Parry' },
+  { name: 'Shadowstep', prereq: 'Charging Slash' },
+  { name: 'Shining Cross', prereq: 'Shadowstep' },
+  { name: 'Lunar Misfortune', prereq: 'Shining Cross' },
+  { name: 'Twin Buster Blade', prereq: 'Shining Cross' },
+  { name: 'Reflex', prereq: 'Dual Sword Mastery' },
+  { name: 'Flash Blast', prereq: 'Reflex' },
+  { name: 'Storm Reaper', prereq: 'Flash Blast' },
+  { name: 'Dual Sword Control', prereq: 'Dual Sword Mastery' },
+  { name: 'Godspeed', prereq: 'Dual Sword Control' },
+  { name: 'Saber Aura', prereq: 'Godspeed' },
+  { name: 'Crescent Saber', prereq: 'Saber Aura' },
+];

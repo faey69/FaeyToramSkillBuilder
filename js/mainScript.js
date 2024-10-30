@@ -150,6 +150,10 @@ mononofuSkillTree.initializeSkillTree(mononofuSkillsData);
 const priestSkillTree = new Tree('Priest Skill Tree');
 priestSkillTree.initializeSkillTree(priestSkillsData);
 
+// --- Dual Sword Skill Tree ---
+const dualSwordSkillTree = new Tree('Dual Sword Skill Tree');
+dualSwordSkillTree.initializeSkillTree(dualSwordSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click
