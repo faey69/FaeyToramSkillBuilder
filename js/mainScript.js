@@ -102,7 +102,7 @@ class Skill {
 
   updatePrereqColour() {
     if (this.prereq) {
-      // Set color here
+      // Set colour here
     }
     this.prereq.updatePrereqColour(); // Recursively set colour for all prereq's prereqs
   }
