@@ -100,6 +100,13 @@ class Skill {
     }
   }
 
+  updatePrereqColour() {
+    if (this.prereq) {
+      // Set color here
+    }
+    this.prereq.updatePrereqColour(); // Recursively set colour for all prereq's prereqs
+  }
+
   resetChildren() {
     this.children.forEach((child) => {
       child.level = 0;
