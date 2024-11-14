@@ -178,5 +178,22 @@ const dualSwordSkillsData = [
   { name: 'Dual Sword Control', prereq: 'Dual Sword Mastery' },
   { name: 'Godspeed', prereq: 'Dual Sword Control' },
   { name: 'Saber Aura', prereq: 'Godspeed' },
-  { name: 'Crescent Saber', prereq: 'Saber Aura' },
+  { name: 'Crescent Saber', prereq: 'Saber Auras' },
+];
+
+// --- Shield Skill Tree ---
+const shieldSkillsData = [
+  { name: 'Shield Mastery', prereq: null },
+  { name: 'Shield Bash', prereq: 'Shield Mastery' },
+  { name: 'Shield Cannon', prereq: 'Shield Bash' },
+  { name: 'Guard Strike', prereq: 'Shield Cannon' },
+  { name: 'Force Shield', prereq: 'Shield Mastery' },
+  { name: 'Magical Shield', prereq: 'Force Shield' },
+  { name: 'Shield Uppercut', prereq: 'Shield Mastery' },
+  { name: 'Dual Shields', prereq: 'Shield Uppercut' },
+  { name: 'Shield Repair', prereq: 'Dual Shields' },
+  { name: 'Belagerung', prereq: 'Shield Repair' },
+  { name: 'Protection', prereq: null },
+  { name: 'Aegis', prereq: 'Protection' },
+  { name: 'Guardian', prereq: 'Aegis' },
 ];

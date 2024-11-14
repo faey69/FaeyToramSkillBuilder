@@ -161,6 +161,10 @@ priestSkillTree.initializeSkillTree(priestSkillsData);
 const dualSwordSkillTree = new Tree('Dual Sword Skill Tree');
 dualSwordSkillTree.initializeSkillTree(dualSwordSkillsData);
 
+// --- Shield Skill Tree ---
+const shieldSkillTree = new Tree('Shield Skill Tree');
+shieldSkillTree.initializeSkillTree(shieldSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click
