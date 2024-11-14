@@ -165,6 +165,10 @@ dualSwordSkillTree.initializeSkillTree(dualSwordSkillsData);
 const shieldSkillTree = new Tree('Shield Skill Tree');
 shieldSkillTree.initializeSkillTree(shieldSkillsData);
 
+// --- Crusher Skill Tree ---
+const crusherSkillTree = new Tree('Crusher Skill Tree');
+crusherSkillTree.initializeSkillTree(crusherSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click

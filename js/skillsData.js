@@ -197,3 +197,17 @@ const shieldSkillsData = [
   { name: 'Aegis', prereq: 'Protection' },
   { name: 'Guardian', prereq: 'Aegis' },
 ];
+
+// --- Crusher Skill Tree ---
+const crusherSkillsData = [
+  { name: 'Forefist Punch', prereq: null },
+  { name: 'Goliath Punch', prereq: 'Forefist Punch' },
+  { name: 'God Hand', prereq: 'Goliath Punch' },
+  { name: 'Divine Rigid Body', prereq: 'God Hand' },
+  { name: 'Breathwork', prereq: null },
+  { name: 'Floating Kick', prereq: 'Breathwork' },
+  { name: 'Geyser Kick', prereq: 'Floating Kick' },
+  { name: 'Combination', prereq: 'Breathwork' },
+  { name: 'Annihilator', prereq: 'Combination' },
+  { name: 'Terrablast', prereq: 'Annihilator' },
+];
