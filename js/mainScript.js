@@ -169,6 +169,10 @@ shieldSkillTree.initializeSkillTree(shieldSkillsData);
 const crusherSkillTree = new Tree('Crusher Skill Tree');
 crusherSkillTree.initializeSkillTree(crusherSkillsData);
 
+// --- Bare Hand Skill Tree ---
+const bareHandSkillTree = new Tree('Bare Hand Skill Tree');
+bareHandSkillTree.initializeSkillTree(bareHandSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click

@@ -211,3 +211,19 @@ const crusherSkillsData = [
   { name: 'Annihilator', prereq: 'Combination' },
   { name: 'Terrablast', prereq: 'Annihilator' },
 ];
+
+// --- Bare Hand Skill Tree ---
+const bareHandSkillsData = [
+  { name: 'Unarmed Mastery', prereq: null },
+  { name: 'Qi Charge', prereq: null },
+  { name: 'Lion Rage', prereq: 'Qi Charge' },
+  { name: 'Ultima Lion Rage', prereq: 'Lion Rage' },
+  { name: 'Earthshaker', prereq: null },
+  { name: 'Raving Storm', prereq: 'Qi Charge' },
+  { name: 'Ultima Raving Storm', prereq: 'Raving Storm' },
+  { name: 'Internal Elixir', prereq: 'Qi Charge' },
+  { name: 'Clash of Enmity', prereq: 'Internal Elixir' },
+  { name: 'Miracle Comeback', prereq: 'Clash of Enmity' },
+  { name: 'Ultima Qi Charge', prereq: 'Qi Charge' },
+  { name: 'Hidden Talent', prereq: 'Ultima Qi Charge' },
+];
