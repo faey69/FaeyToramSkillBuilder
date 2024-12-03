@@ -173,6 +173,18 @@ crusherSkillTree.initializeSkillTree(crusherSkillsData);
 const bareHandSkillTree = new Tree('Bare Hand Skill Tree');
 bareHandSkillTree.initializeSkillTree(bareHandSkillsData);
 
+// --- Dark Power Skill Tree ---
+const darkPowerSkillTree = new Tree('Dark Power Skill Tree');
+darkPowerSkillTree.initializeSkillTree(darkPowerSkillsData);
+
+// --- Dagger Skill Tree ---
+const daggerSkillTree = new Tree('Dagger Skill Tree');
+daggerSkillTree.initializeSkillTree(daggerSkillsData);
+
+// --- Magic Blade Skill Tree ---
+const magicBladeSkillTree = new Tree('Magic Blade Skill Tree');
+magicBladeSkillTree.initializeSkillTree(magicBladeSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click

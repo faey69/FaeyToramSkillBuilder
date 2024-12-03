@@ -227,3 +227,49 @@ const bareHandSkillsData = [
   { name: 'Ultima Qi Charge', prereq: 'Qi Charge' },
   { name: 'Hidden Talent', prereq: 'Ultima Qi Charge' },
 ];
+
+// --- Dark Power Skill Tree ---
+const darkPowerSkillsData = [
+  { name: 'Bloody Bite', prereq: null },
+  { name: 'Dark Stinger', prereq: 'Bloody Bite' },
+  { name: 'Red Tear', prereq: 'Dark Stinger' },
+  { name: 'Soul Hunter', prereq: 'Red Tear' },
+  { name: 'Sacrifice', prereq: null },
+  { name: 'Demon Claw', prereq: 'Sacrifice' },
+  { name: 'Regretless', prereq: 'Demon Claw' },
+  { name: 'Eternal Nightmare', prereq: 'Regretless' },
+];
+
+// --- Dagger Skill Tree ---
+const daggerSkillsData = [
+  { name: 'Throwing Knife', prereq: null },
+  { name: 'Spike Dart', prereq: 'Throwing Knife' },
+  { name: 'Gatling Knife', prereq: 'Spike Dart' },
+  { name: 'Amazing Throw', prereq: 'Gatling Knife' },
+  { name: 'Poison Dagger', prereq: 'Throwing Knife' },
+  { name: 'Double Stab', prereq: 'Poison Dagger' },
+  { name: 'Hidden Arm', prereq: null },
+  { name: 'Intensive Knife', prereq: 'Hidden Arm' },
+  { name: 'Mail Breaker', prereq: 'Intensive Knife' },
+  { name: 'Knife Combat', prereq: 'Intensive Knife' },
+  { name: 'Flincher Knife', prereq: 'Knife Combat' },
+];
+
+// --- Magic Blade Skill Tree ---
+const magicBladeSkillsData = [
+  { name: 'Magic Warrior Mastery', prereq: null },
+  { name: 'Conversion', prereq: 'Magic Warrior Mastery' },
+  { name: 'Resonance', prereq: 'Conversion' },
+  { name: 'Enchanted Spell', prereq: 'Resonance' },
+  { name: 'Dual Bringer', prereq: 'Enchanted Spell' },
+  { name: 'Ether Flare', prereq: null },
+  { name: 'Element Slash', prereq: 'Ether Flare' },
+  { name: 'Enchant Sword', prereq: 'Element Slash' },
+  { name: 'Enchanted Burst', prereq: 'Enchant Sword' },
+  { name: 'Union Sword', prereq: 'Enchanted Burst' },
+  { name: 'Siphon Barrier', prereq: null },
+  { name: 'Teleport', prereq: 'Siphon Barrier' },
+  { name: 'Siphon Recall', prereq: 'Teleport' },
+  { name: 'Float Dash', prereq: 'Siphon Recall' },
+  { name: 'Magic Skin', prereq: 'Float Dash' },
+];
