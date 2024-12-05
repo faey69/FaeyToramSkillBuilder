@@ -178,7 +178,7 @@ const dualSwordSkillsData = [
   { name: 'Dual Sword Control', prereq: 'Dual Sword Mastery' },
   { name: 'Godspeed', prereq: 'Dual Sword Control' },
   { name: 'Saber Aura', prereq: 'Godspeed' },
-  { name: 'Crescent Saber', prereq: 'Saber Auras' },
+  { name: 'Crescent Saber', prereq: 'Saber Aura' },
 ];
 
 // --- Shield Skill Tree ---

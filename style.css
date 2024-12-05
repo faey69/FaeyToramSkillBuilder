@@ -8,7 +8,7 @@
 
 @layer components {
   .td-skill {
-    @apply hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1 hover:bg-pink-100;
+    @apply hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1;
   }
 
   .td-empty {

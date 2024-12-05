@@ -25,9 +25,8 @@ class Tree {
 
   // Reset all skill levels to zero
   resetSkillLevels() {
-    // Loop through all skills and reset their level to 0
     this.skills.forEach((skill) => {
-      skill.level = 0; // Reset each skill's level
+      skill.level = 0;
     });
   }
 
@@ -96,21 +95,43 @@ class Skill {
       if (this.prereq.level < 5) {
         this.prereq.level = 5;
       }
-      this.prereq.setPrerequisiteLevels(); // Recursively reset all of the prereq's prereqs
+      // Recursively reset all of the prereq's prereqs
+      this.prereq.setPrerequisiteLevels();
     }
   }
 
-  updatePrereqColour() {
+  getPrereqCell() {
     if (this.prereq) {
-      // Set colour here
+      // Find the cell of the prereq skill
+      const prereqCell = skillCells.find(
+        (cell) =>
+          cell.querySelector('.skillName').textContent === this.prereq.name
+      );
+      return prereqCell;
     }
-    this.prereq.updatePrereqColour(); // Recursively set colour for all prereq's prereqs
+    return null;
+  }
+
+  highlightPrereqs(highlight) {
+    const prereqCell = this.getPrereqCell();
+    if (prereqCell) {
+      if (highlight) {
+        prereqCell.classList.add('bg-pink-100');
+      } else {
+        prereqCell.classList.remove('bg-pink-100');
+      }
+      if (this.prereq) {
+        // Recursively highlight prerequisites
+        this.prereq.highlightPrereqs(highlight);
+      }
+    }
   }
 
   resetChildren() {
     this.children.forEach((child) => {
       child.level = 0;
-      child.resetChildren(); // Recursively reset all of the child's children
+      // Recursively reset all of the child's children
+      child.resetChildren();
     });
   }
 
@@ -202,6 +223,22 @@ resetAllBtn.addEventListener('click', () => {
   resetAllSkills();
   updateSkillDisplay();
 });
+
+skillCells.forEach((cell) => {
+  const skillName = cell.querySelector('.skillName').textContent;
+  const skill = skillMap.get(skillName);
+
+  cell.addEventListener('mouseenter', () => {
+    cell.classList.add('bg-pink-100');
+    skill.highlightPrereqs(true);
+  });
+
+  cell.addEventListener('mouseleave', () => {
+    cell.classList.remove('bg-pink-100');
+    skill.highlightPrereqs(false);
+  });
+});
+
 // ---------- SP calculations and updates ----------
 // --- Update functions ---
 function updateTreeSP(tree) {
@@ -272,12 +309,8 @@ skillCells.forEach((cell) => {
       (cell) => cell.querySelector('.skillName').textContent === skill.name
     );
 
-    if (skillCell) {
-      const skillLevel = skillCell.querySelector('.skillLevel');
-      skillLevel.textContent = skill.level; // Update the displayed skill level
-    } else {
-      console.error(`Skill cell not found for ${skill.name}`);
-    }
+    const skillLevel = skillCell.querySelector('.skillLevel');
+    skillLevel.textContent = skill.level; // Update the displayed skill level
 
     // Recursively update for prerequisites
     if (skill.prereq) {
