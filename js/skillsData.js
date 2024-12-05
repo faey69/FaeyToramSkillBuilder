@@ -273,3 +273,56 @@ const magicBladeSkillsData = [
   { name: 'Float Dash', prereq: 'Siphon Recall' },
   { name: 'Magic Skin', prereq: 'Float Dash' },
 ];
+
+// --- Halberd Skill Tree ---
+const halberdSkillsData = [
+  { name: 'Flash Stab', prereq: null },
+  { name: 'Cannon Spear', prereq: 'Flash Stab' },
+  { name: 'Dragon Tail', prereq: 'Cannon Spear' },
+  { name: 'Dragon Tooth', prereq: 'Dragon Tail' },
+  { name: 'Draconic Charge', prereq: 'Dragon Tooth' },
+  { name: 'Dive Impact', prereq: 'Dragon Tail' },
+  { name: 'Deadly Spear', prereq: 'Flash Stab' },
+  { name: 'Strike Stab', prereq: 'Deadly Spear' },
+  { name: 'Chronos Drive', prereq: 'Strike Stab' },
+  { name: 'Infinite Dimension', prereq: 'Chronos Drive' },
+  { name: 'Punish Ray', prereq: 'Deadly Spear' },
+  { name: 'Halberd Mastery', prereq: null },
+  { name: 'Critical Spear', prereq: 'Halberd Mastery' },
+  { name: 'Tornado Lance', prereq: 'Critical Spear' },
+  { name: 'Quick Aura', prereq: null },
+  { name: 'War Cry of Struggle', prereq: 'Quick Aura' },
+  { name: 'Godspeed Wield', prereq: 'War Cry of Struggle' },
+  { name: 'Almighty Wield', prereq: 'Godspeed Wield' },
+  { name: 'Buster Lance', prereq: null },
+];
+
+// --- Sprite Skill Tree ---
+const spriteSkillsData = [
+  { name: 'Auto-Device', prereq: null },
+  { name: 'Express Aid', prereq: 'Auto-Device' },
+  { name: 'Counterforce', prereq: 'Auto-Device' },
+  { name: 'Micro Heal', prereq: 'Express Aid' },
+  { name: 'Enhance', prereq: 'Express Aid' },
+  { name: 'Resurrection', prereq: 'Micro Heal' },
+  { name: 'Stabiliz', prereq: 'Enhance' },
+  { name: 'Sprite Shield', prereq: 'Enhance' },
+  { name: 'Astral Lance', prereq: 'Counterforce' },
+  { name: 'Magic Vulcan', prereq: 'Astral Lance' },
+];
+
+// --- Wizard Skill Tree ---
+const wizardSkillsData = [
+  { name: 'Familia', prereq: null },
+  { name: 'Lightning', prereq: 'Familia' },
+  { name: 'Blizzard', prereq: 'Familia' },
+  { name: 'Meteor Strike', prereq: 'Blizzard' },
+  { name: 'Imperial Ray', prereq: 'Meteor Strike' },
+  { name: 'Mana Crystal', prereq: 'Familia' },
+  { name: 'Stone Barrier', prereq: 'Mana Crystal' },
+  { name: 'Advanced Familia', prereq: 'Stone Barrier' },
+  { name: 'Crystal Laser', prereq: 'Mana Crystal' },
+  { name: 'Overlimit', prereq: 'Crystal Laser' },
+  { name: 'Sorcery Guide', prereq: 'Overlimit' },
+  { name: 'Cast Mastery', prereq: null },
+];

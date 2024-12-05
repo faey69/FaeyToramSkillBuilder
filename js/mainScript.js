@@ -206,6 +206,18 @@ daggerSkillTree.initializeSkillTree(daggerSkillsData);
 const magicBladeSkillTree = new Tree('Magic Blade Skill Tree');
 magicBladeSkillTree.initializeSkillTree(magicBladeSkillsData);
 
+// --- Halberd Skill Tree ---
+const halberdSkillTree = new Tree('Halberd Skill Tree');
+halberdSkillTree.initializeSkillTree(halberdSkillsData);
+
+// --- Sprite Skill Tree ---
+const spriteSkillTree = new Tree('Sprite Skill Tree');
+spriteSkillTree.initializeSkillTree(spriteSkillsData);
+
+// --- Wizard Skill Tree ---
+const wizardSkillTree = new Tree('Wizard Skill Tree');
+wizardSkillTree.initializeSkillTree(wizardSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click
