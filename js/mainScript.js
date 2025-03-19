@@ -145,82 +145,34 @@ class Skill {
     this.setPrerequisiteLevels();
   }
 }
-// ---------- skill & tree initializations ----------
-// --- Guard Skill Tree ---
-const guardSkillTree = new Tree('Guard Skill Tree');
-guardSkillTree.initializeSkillTree(guardSkillsData);
 
-// --- Knight Skill Tree ---
-const knightSkillTree = new Tree('Knight Skill Tree');
-knightSkillTree.initializeSkillTree(knightSkillsData);
+// ---------- Initialize skill trees ----------
+const skillTrees = [
+  { name: 'Guard', data: guardSkillsData },
+  { name: 'Knight', data: knightSkillsData },
+  { name: 'Blade', data: bladeSkillsData },
+  { name: 'Martial', data: martialSkillsData },
+  { name: 'Shot', data: shotSkillsData },
+  { name: 'Magic', data: magicSkillsData },
+  { name: 'Mononofu', data: mononofuSkillsData },
+  { name: 'Priest', data: priestSkillsData },
+  { name: 'Dual Sword', data: dualSwordSkillsData },
+  { name: 'Shield', data: shieldSkillsData },
+  { name: 'Crusher', data: crusherSkillsData },
+  { name: 'Bare Hand', data: bareHandSkillsData },
+  { name: 'Dark Power', data: darkPowerSkillsData },
+  { name: 'Dagger', data: daggerSkillsData },
+  { name: 'Magic Blade', data: magicBladeSkillsData },
+  { name: 'Halberd', data: halberdSkillsData },
+  { name: 'Sprite', data: spriteSkillsData },
+  { name: 'Wizard', data: wizardSkillsData },
+  { name: 'Smith', data: smithSkillsData },
+];
 
-// --- Blade Skill Tree ---
-const bladeSkillTree = new Tree('Blade Skill Tree');
-bladeSkillTree.initializeSkillTree(bladeSkillsData);
-
-// --- Martial Skill Tree ---
-const martialSkillTree = new Tree('Martial Skill Tree');
-martialSkillTree.initializeSkillTree(martialSkillsData);
-
-// --- Shot Skill Tree ---
-const shotSkillTree = new Tree('Shot Skill Tree');
-shotSkillTree.initializeSkillTree(shotSkillsData);
-
-// --- Magic Skill Tree ---
-const magicSkillTree = new Tree('Magic Skill Tree');
-magicSkillTree.initializeSkillTree(magicSkillsData);
-
-// --- Mononofu Skill Tree ---
-const mononofuSkillTree = new Tree('Mononofu Skill Tree');
-mononofuSkillTree.initializeSkillTree(mononofuSkillsData);
-
-// --- Priest Skill Tree ---
-const priestSkillTree = new Tree('Priest Skill Tree');
-priestSkillTree.initializeSkillTree(priestSkillsData);
-
-// --- Dual Sword Skill Tree ---
-const dualSwordSkillTree = new Tree('Dual Sword Skill Tree');
-dualSwordSkillTree.initializeSkillTree(dualSwordSkillsData);
-
-// --- Shield Skill Tree ---
-const shieldSkillTree = new Tree('Shield Skill Tree');
-shieldSkillTree.initializeSkillTree(shieldSkillsData);
-
-// --- Crusher Skill Tree ---
-const crusherSkillTree = new Tree('Crusher Skill Tree');
-crusherSkillTree.initializeSkillTree(crusherSkillsData);
-
-// --- Bare Hand Skill Tree ---
-const bareHandSkillTree = new Tree('Bare Hand Skill Tree');
-bareHandSkillTree.initializeSkillTree(bareHandSkillsData);
-
-// --- Dark Power Skill Tree ---
-const darkPowerSkillTree = new Tree('Dark Power Skill Tree');
-darkPowerSkillTree.initializeSkillTree(darkPowerSkillsData);
-
-// --- Dagger Skill Tree ---
-const daggerSkillTree = new Tree('Dagger Skill Tree');
-daggerSkillTree.initializeSkillTree(daggerSkillsData);
-
-// --- Magic Blade Skill Tree ---
-const magicBladeSkillTree = new Tree('Magic Blade Skill Tree');
-magicBladeSkillTree.initializeSkillTree(magicBladeSkillsData);
-
-// --- Halberd Skill Tree ---
-const halberdSkillTree = new Tree('Halberd Skill Tree');
-halberdSkillTree.initializeSkillTree(halberdSkillsData);
-
-// --- Sprite Skill Tree ---
-const spriteSkillTree = new Tree('Sprite Skill Tree');
-spriteSkillTree.initializeSkillTree(spriteSkillsData);
-
-// --- Wizard Skill Tree ---
-const wizardSkillTree = new Tree('Wizard Skill Tree');
-wizardSkillTree.initializeSkillTree(wizardSkillsData);
-
-// --- Smith Skill Tree ---
-const smithSkillTree = new Tree('Smith Skill Tree');
-smithSkillTree.initializeSkillTree(smithSkillsData);
+skillTrees.forEach(({ name, data }) => {
+  const tree = new Tree(`${name} Skill Tree`);
+  tree.initializeSkillTree(data);
+});
 
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
