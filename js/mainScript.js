@@ -218,6 +218,10 @@ spriteSkillTree.initializeSkillTree(spriteSkillsData);
 const wizardSkillTree = new Tree('Wizard Skill Tree');
 wizardSkillTree.initializeSkillTree(wizardSkillsData);
 
+// --- Smith Skill Tree ---
+const smithSkillTree = new Tree('Smith Skill Tree');
+smithSkillTree.initializeSkillTree(smithSkillsData);
+
 // ---------- setup & util functions ----------
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click

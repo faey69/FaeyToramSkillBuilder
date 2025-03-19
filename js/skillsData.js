@@ -326,3 +326,30 @@ const wizardSkillsData = [
   { name: 'Sorcery Guide', prereq: 'Overlimit' },
   { name: 'Cast Mastery', prereq: null },
 ];
+
+// --- Smith Skill Tree ---
+const smithSkillsData = [
+  { name: 'Refine Equipment', prereq: null },
+  { name: "Novice's Anvil", prereq: 'Refine Equipment' },
+  { name: "Craftsman's Anvil", prereq: "Novice's Anvil" },
+  { name: "Blacksmith's Anvil", prereq: "Craftsman's Anvil" },
+  { name: "Master's Anvil", prereq: "Blacksmith's Anvil" },
+  { name: "Master's Anvil II", prereq: "Master's Anvil" },
+  { name: 'Mid-Class Refinement', prereq: 'Refine Equipment' },
+  { name: 'High-Class Refinement', prereq: 'Mid-Class Refinement' },
+  { name: "Expert's Refinement", prereq: 'High-Class Refinement' },
+  { name: 'Create Equipment', prereq: 'Refine Equipment' },
+  { name: 'Careful Creation', prereq: 'Create Equipment' },
+  { name: "Expert's Creation", prereq: 'Careful Creation' },
+  { name: 'Customize Equipment', prereq: 'Create Equipment' },
+  { name: 'Accurate Customization', prereq: 'Customize Equipment' },
+  { name: "Expert's Customization", prereq: 'Accurate Customization' },
+  { name: "Expert's Customization II", prereq: "Expert's Customization" },
+  { name: 'Metal Compassion', prereq: null },
+  { name: 'Fabric Compassion', prereq: null },
+  { name: 'Beast Compassion', prereq: null },
+  { name: 'Wood Compassion', prereq: null },
+  { name: 'Medicine Compassion', prereq: null },
+  { name: 'Mana Compassion', prereq: null },
+  { name: 'Process Materials', prereq: null },
+];
