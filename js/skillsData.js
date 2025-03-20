@@ -351,6 +351,10 @@ const smithSkillsData = [
   { name: 'Wood Compassion', prereq: null },
   { name: 'Medicine Compassion', prereq: null },
   { name: 'Mana Compassion', prereq: null },
+];
+
+// --- Process Materials Skill Tree ---
+const processMaterialsSkillsData = [
   { name: 'Process Materials', prereq: null },
 ];
 
@@ -370,5 +374,4 @@ const alchemySkillsData = [
   { name: 'Technical Synthesis I', prereq: 'Synthesize Equipment' },
   { name: 'Technical Synthesis II', prereq: 'Technical Synthesis I' },
   { name: 'Technical Synthesis III', prereq: 'Technical Synthesis II' },
-  { name: 'Process Materials', prereq: null },
 ];

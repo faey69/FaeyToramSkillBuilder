@@ -1,14 +1,16 @@
-@tailwind base;
-/* Chrome, Edge, and Safari */
-/* *::-webkit-scrollbar {
-  display: none;
-} */
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 @layer components {
   .td-skill {
-    @apply hover:cursor-pointer border border-black min-w-32 min-h-32 w-32 h-32 p-1;
+    @apply border border-black min-w-32 min-h-32 w-32 h-32 p-1;
+  }
+
+  .td-skill.skill {
+    @apply hover:cursor-pointer;
+  }
+
+  .process-materials-dummy {
+    @apply bg-gray-200 hover:cursor-default;
   }
 
   .td-empty {

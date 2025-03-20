@@ -179,6 +179,7 @@ const skillTrees = [
   { name: 'Sprite', data: spriteSkillsData },
   { name: 'Wizard', data: wizardSkillsData },
   { name: 'Smith', data: smithSkillsData },
+  { name: 'Process Materials', data: processMaterialsSkillsData },
   { name: 'Alchemy', data: alchemySkillsData },
 ];
 
@@ -325,3 +326,28 @@ skillCells.forEach((cell) => {
     updateGlobalSP();
   });
 });
+
+// --- Unique Case: Process Materials dummies update ---
+const processMaterialsDummies = Array.from(
+  document.getElementsByClassName('process-materials-dummy')
+);
+const processMaterialsReal = skillMap.get('Process Materials');
+
+function updateProcessMaterialsDummies() {
+  processMaterialsDummies.forEach((dummy) => {
+    const dummyLevel = dummy.querySelector(
+      '.process-materials-dummy-skillLevel'
+    );
+    if (dummyLevel) {
+      dummyLevel.textContent = processMaterialsReal.level;
+    }
+  });
+}
+
+// Observe changes to the skill level text content
+const observer = new MutationObserver(updateProcessMaterialsDummies);
+const processMaterialsLevel =
+  processMaterialsReal.skillCell.querySelector('.skillLevel');
+if (processMaterialsLevel) {
+  observer.observe(processMaterialsLevel, { childList: true, subtree: false });
+}
