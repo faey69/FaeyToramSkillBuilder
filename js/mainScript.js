@@ -5,10 +5,9 @@ const skillMap = new Map(); // Eg: [{'Physical Guard', physicalGuard}, {..., ...
 
 const treeSPElements = Array.from(document.getElementsByClassName('treeSP'));
 const globalSPSpan = document.getElementById('globalSPSpan');
-const skillTreeElements = Array.from(
-  document.getElementsByClassName('skillTreeMainDiv')
-);
+
 const skillCells = Array.from(document.getElementsByClassName('skill'));
+
 const resetAllBtn = document.getElementById('resetAllBtn');
 // -------- classes --------
 // The Skill Tree (Magic, Blade, Shoot, Hunter...)
@@ -17,6 +16,11 @@ class Tree {
     this.name = name;
     this.skills = [];
     skillTreeArr.push(this);
+
+    // Find the corresponding treeSPElement
+    this.treeSPElement = treeSPElements.find(
+      (element) => element.getAttribute('data-tree-name') === this.name
+    );
   }
 
   addSkill(skill) {
@@ -39,21 +43,35 @@ class Tree {
    * Each skill is created based on its name and prerequisite, which is retrieved from skillMap.
    *
    * @param {Array} skillsData - An array of skill objects, each containing a name and an optional prerequisite.
+   * @param {Array} skillCells - A pre-fetched array of skill cell elements from the DOM.
    */
-  initializeSkillTree(skillsData) {
+  initializeSkillTree(skillsData, skillCells) {
     skillsData.forEach((skillData) => {
       // String of skillData.prereq to get prereq's skill obj from skillMap
       const prereqSkill = skillData.prereq
         ? skillMap.get(skillData.prereq)
         : null;
-      const skill = new Skill(skillData.name, 0, prereqSkill, this);
+
+      const skillCell = skillCells.find(
+        (cell) =>
+          cell.querySelector('.skillName').textContent === skillData.name
+      );
+
+      const skill = new Skill(skillData.name, 0, prereqSkill, this, skillCell);
       this.addSkill(skill);
     });
+  }
+
+  /**
+   * Update the total levels for the tree total SP on HTML. The total SP of tree is calculated upon calling this function.
+   */
+  updateTreeSP() {
+    this.treeSPElement.textContent = this.getTotalLevels();
   }
 }
 
 class Skill {
-  constructor(name, level = 0, prereq = null, tree) {
+  constructor(name, level = 0, prereq = null, tree, skillCell) {
     this.name = name;
     this.level = level; // Skill level (0-10)
     this.prereq = prereq; // Prerequisite skill
@@ -63,6 +81,12 @@ class Skill {
       prereq.addChild(this); // Add this skill as a child to its prerequisite
     }
     skillMap.set(this.name, this);
+
+    this.skillCell = skillCell; // Corresponding skill cell element
+  }
+
+  get prereqCell() {
+    return this.prereq ? this.prereq.skillCell : null;
   }
 
   addChild(skill) {
@@ -100,20 +124,8 @@ class Skill {
     }
   }
 
-  getPrereqCell() {
-    if (this.prereq) {
-      // Find the cell of the prereq skill
-      const prereqCell = skillCells.find(
-        (cell) =>
-          cell.querySelector('.skillName').textContent === this.prereq.name
-      );
-      return prereqCell;
-    }
-    return null;
-  }
-
   highlightPrereqs(highlight) {
-    const prereqCell = this.getPrereqCell();
+    const prereqCell = this.prereqCell;
     if (prereqCell) {
       if (highlight) {
         prereqCell.classList.add('bg-pink-100');
@@ -167,14 +179,18 @@ const skillTrees = [
   { name: 'Sprite', data: spriteSkillsData },
   { name: 'Wizard', data: wizardSkillsData },
   { name: 'Smith', data: smithSkillsData },
+  { name: 'Alchemy', data: alchemySkillsData },
 ];
 
 skillTrees.forEach(({ name, data }) => {
   const tree = new Tree(`${name} Skill Tree`);
-  tree.initializeSkillTree(data);
+  tree.initializeSkillTree(data, skillCells);
 });
 
 // ---------- setup & util functions ----------
+const skillTreeElements = Array.from(
+  document.getElementsByClassName('skillTreeMainDiv')
+);
 skillTreeElements.forEach((element) => {
   // Prevent the context menu from appearing on right-click
   element.addEventListener('contextmenu', function (event) {
@@ -192,41 +208,41 @@ resetAllBtn.addEventListener('click', () => {
   updateSkillDisplay();
 });
 
-skillCells.forEach((cell) => {
+// Skills highlighting
+const skillTreeContainer = document.getElementById('mainContentDiv');
+
+skillTreeContainer.addEventListener('mouseover', (event) => {
+  const cell = event.target.closest('.skill');
+  if (!cell) return;
+
   const skillName = cell.querySelector('.skillName').textContent;
   const skill = skillMap.get(skillName);
+  if (!skill) return;
 
-  cell.addEventListener('mouseenter', () => {
-    cell.classList.add('bg-pink-100');
-    skill.highlightPrereqs(true);
-  });
+  cell.classList.add('bg-pink-100');
+  skill.highlightPrereqs(true);
+});
 
-  cell.addEventListener('mouseleave', () => {
-    cell.classList.remove('bg-pink-100');
-    skill.highlightPrereqs(false);
-  });
+skillTreeContainer.addEventListener('mouseout', (event) => {
+  const cell = event.target.closest('.skill');
+  if (!cell) return;
+
+  const skillName = cell.querySelector('.skillName').textContent;
+  const skill = skillMap.get(skillName);
+  if (!skill) return;
+
+  cell.classList.remove('bg-pink-100');
+  skill.highlightPrereqs(false);
 });
 
 // ---------- SP calculations and updates ----------
-// --- Update functions ---
-function updateTreeSP(tree) {
-  treeSPElements.forEach((element) => {
-    const treeTotalLevels = tree.getTotalLevels();
-    // Update the total SP for a tree
-    if (element.getAttribute('data-tree-name') === tree.name) {
-      element.textContent = treeTotalLevels;
-    }
-  });
-}
 
 // This function updates all skills in all trees, unlike updateSkillLevelInHtmlRecursive();
 function updateSkillDisplay() {
   skillTreeArr.forEach((tree) => {
     tree.skills.forEach((skill) => {
       // Find the HTML element corresponding to the skill name
-      const skillCell = skillCells.find(
-        (cell) => cell.querySelector('.skillName').textContent === skill.name
-      );
+      const skillCell = skill.skillCell;
 
       if (skillCell) {
         // Find the <p> element that displays the skill level
@@ -234,7 +250,7 @@ function updateSkillDisplay() {
         skillLevel.textContent = skill.level;
       }
     });
-    updateTreeSP(tree);
+    tree.updateTreeSP();
   });
   updateGlobalSP();
 }
@@ -251,7 +267,7 @@ function updateGlobalSP() {
 function resetAllSkills() {
   skillTreeArr.forEach((tree) => {
     tree.resetSkillLevels();
-    updateTreeSP(tree);
+    tree.updateTreeSP();
   });
   updateGlobalSP();
 }
@@ -262,34 +278,20 @@ skillCells.forEach((cell) => {
   const skill = skillMap.get(skillName);
 
   // Only searches within clicked skill's tree and then update only those related skills.
-  function updateSkillLevelInHtmlRecursive(
-    skill,
-    skillCells,
-    visited = new Set()
-  ) {
-    if (visited.has(skill.name)) return; // Prevent processing the same skill again
+  function updateSkillLevelInHtmlRecursive(skill, visited = new Set()) {
+    if (visited.has(skill.name)) return;
     visited.add(skill.name);
 
-    console.log(`Updating skill: ${skill.name}, Level: ${skill.level}`);
-
-    // Find the first skillCell where the text inside the .skillName element matches the name of the skill
-    const skillCell = skillCells.find(
-      (cell) => cell.querySelector('.skillName').textContent === skill.name
-    );
-
-    const skillLevel = skillCell.querySelector('.skillLevel');
-    skillLevel.textContent = skill.level; // Update the displayed skill level
+    skill.skillCell.querySelector('.skillLevel').textContent = skill.level;
 
     // Recursively update for prerequisites
     if (skill.prereq) {
-      console.log(`Updating prerequisite: ${skill.prereq.name}`);
-      updateSkillLevelInHtmlRecursive(skill.prereq, skillCells, visited);
+      updateSkillLevelInHtmlRecursive(skill.prereq, visited);
     }
 
     // Recursively update for children
     skill.children.forEach((child) => {
-      console.log(`Updating child: ${child.name}`);
-      updateSkillLevelInHtmlRecursive(child, skillCells, visited);
+      updateSkillLevelInHtmlRecursive(child, visited);
     });
   }
 
@@ -308,18 +310,18 @@ skillCells.forEach((cell) => {
     }
 
     // Recursively update the DOM for the skill and its prerequisites
-    updateSkillLevelInHtmlRecursive(skill, skillCells);
+    updateSkillLevelInHtmlRecursive(skill);
 
     // Update current Tree SP
-    updateTreeSP(skill.tree);
+    skill.tree.updateTreeSP();
     updateGlobalSP();
   });
 
   cell.addEventListener('long-press', (event) => {
     event.preventDefault();
     skill.setLevelZero();
-    updateSkillLevelInHtmlRecursive(skill, skillCells);
-    updateTreeSP(skill.tree);
+    updateSkillLevelInHtmlRecursive(skill);
+    skill.tree.updateTreeSP();
     updateGlobalSP();
   });
 });

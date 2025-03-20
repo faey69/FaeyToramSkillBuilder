@@ -353,3 +353,22 @@ const smithSkillsData = [
   { name: 'Mana Compassion', prereq: null },
   { name: 'Process Materials', prereq: null },
 ];
+
+// --- Alchemy Skill Tree ---
+const alchemySkillsData = [
+  { name: 'Item Synthesis', prereq: null },
+  { name: "Novice's Bottle", prereq: 'Item Synthesis' },
+  { name: "Craftsman's Bottle", prereq: "Novice's Bottle" },
+  { name: "Synthesist's Bottle", prereq: "Craftsman's Bottle" },
+  { name: "Master's Bottle", prereq: "Synthesist's Bottle" },
+  { name: "Master's Bottle II", prereq: "Master's Bottle" },
+  { name: 'Mid-Class Synthesis', prereq: 'Item Synthesis' },
+  { name: 'High-Class Synthesis', prereq: 'Mid-Class Synthesis' },
+  { name: "Expert's Synthesis", prereq: 'High-Class Synthesis' },
+  { name: "Expert's Synthesis II", prereq: "Expert's Synthesis" },
+  { name: 'Synthesize Equipment', prereq: 'Item Synthesis' },
+  { name: 'Technical Synthesis I', prereq: 'Synthesize Equipment' },
+  { name: 'Technical Synthesis II', prereq: 'Technical Synthesis I' },
+  { name: 'Technical Synthesis III', prereq: 'Technical Synthesis II' },
+  { name: 'Process Materials', prereq: null },
+];

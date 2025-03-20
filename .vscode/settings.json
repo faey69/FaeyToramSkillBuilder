@@ -1,0 +1,29 @@
+{
+  "prettier.bracketSameLine": false,
+  "prettier.useTabs": false,
+  "prettier.withNodeModules": false,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.vue": "vue",
+    "*.html": "html",
+    "*.js": "javascript"
+  },
+  "html-css-class-completion.JavaScriptLanguages": [
+    "javascript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "editor.formatOnSave": true,
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "explorer.compactFolders": false,
+  "scm.compactFolders": false,
+  "git.ignoreLimitWarning": true
+}
