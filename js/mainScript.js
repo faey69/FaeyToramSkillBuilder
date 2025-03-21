@@ -278,22 +278,38 @@ skillCells.forEach((cell) => {
   const skillName = cell.getElementsByClassName('skillName')[0].textContent;
   const skill = skillMap.get(skillName);
 
-  // Only searches within clicked skill's tree and then update only those related skills.
-  function updateSkillLevelInHtmlRecursive(skill, visited = new Set()) {
-    if (visited.has(skill.name)) return;
-    visited.add(skill.name);
-
-    skill.skillCell.querySelector('.skillLevel').textContent = skill.level;
-
-    // Recursively update for prerequisites
-    if (skill.prereq) {
-      updateSkillLevelInHtmlRecursive(skill.prereq, visited);
+  /**
+   * Breadth First Search traversal in both directions at the same time.
+   *
+   * @param {Skill} skill - The starting skill to update, triggering updates for its prerequisites and children.
+   */
+  // Adapted from https://ellen-park.medium.com/implementing-breadth-first-search-in-javascript-49af8cfad763 (This is for tree)
+  // and https://hackernoon.com/a-beginners-guide-to-bfs-and-dfs-in-javascript (This is for graph)
+  function updateSkillLevelInHtmlBFS(skill) {
+    function updateSkillLevelInHtml(skill) {
+      skill.skillCell.querySelector('.skillLevel').textContent = skill.level;
     }
 
-    // Recursively update for children
-    skill.children.forEach((child) => {
-      updateSkillLevelInHtmlRecursive(child, visited);
-    });
+    const queue = [skill];
+    const visited = new Set();
+
+    while (queue.length > 0) {
+      const currentSkill = queue.shift();
+      if (visited.has(currentSkill.name)) continue;
+      visited.add(currentSkill.name);
+
+      updateSkillLevelInHtml(currentSkill);
+
+      // Add prerequisites and children (the neighbours) to the queue
+      if (currentSkill.prereq && !visited.has(currentSkill.prereq.name)) {
+        queue.push(currentSkill.prereq);
+      }
+      currentSkill.children.forEach((child) => {
+        if (!visited.has(child.name)) {
+          queue.push(child);
+        }
+      });
+    }
   }
 
   cell.addEventListener('mousedown', (event) => {
@@ -311,7 +327,7 @@ skillCells.forEach((cell) => {
     }
 
     // Recursively update the DOM for the skill and its prerequisites
-    updateSkillLevelInHtmlRecursive(skill);
+    updateSkillLevelInHtmlBFS(skill);
 
     // Update current Tree SP
     skill.tree.updateTreeSP();
@@ -321,7 +337,7 @@ skillCells.forEach((cell) => {
   cell.addEventListener('long-press', (event) => {
     event.preventDefault();
     skill.setLevelZero();
-    updateSkillLevelInHtmlRecursive(skill);
+    updateSkillLevelInHtmlBFS(skill);
     skill.tree.updateTreeSP();
     updateGlobalSP();
   });
