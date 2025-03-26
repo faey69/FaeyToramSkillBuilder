@@ -28,14 +28,14 @@ class Tree {
 
   // Reset all skill levels to zero
   resetSkillLevels() {
-    const removedSP = this.getTotalLevels();
+    const removedSP = this.totalLevels;
     this.skills.forEach((skill) => {
       skill.level = 0;
     });
     globalSP -= removedSP;
   }
 
-  getTotalLevels() {
+  get totalLevels() {
     return this.skills.reduce((total, skill) => total + skill.level, 0);
   }
 
@@ -67,7 +67,7 @@ class Tree {
    * Update the total levels for the tree total SP on HTML. The total SP of tree is calculated upon calling this function.
    */
   updateTreeSP() {
-    this.treeSPElement.textContent = this.getTotalLevels();
+    this.treeSPElement.textContent = this.totalLevels;
   }
 }
 
