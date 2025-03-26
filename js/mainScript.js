@@ -7,7 +7,6 @@ const treeSPElements = Array.from(document.getElementsByClassName('treeSP'));
 const globalSPSpan = document.getElementById('globalSPSpan');
 
 const skillCells = Array.from(document.getElementsByClassName('skill'));
-
 const resetAllBtn = document.getElementById('resetAllBtn');
 // -------- classes --------
 // The Skill Tree (Magic, Blade, Shoot, Hunter...)
@@ -210,9 +209,7 @@ resetAllBtn.addEventListener('click', () => {
 });
 
 // Skills highlighting
-const skillTreeContainer = document.getElementById('mainContentDiv');
-
-skillTreeContainer.addEventListener('mouseover', (event) => {
+mainContentDiv.addEventListener('mouseover', (event) => {
   const cell = event.target.closest('.skill');
   if (!cell) return;
 
@@ -224,7 +221,7 @@ skillTreeContainer.addEventListener('mouseover', (event) => {
   skill.highlightPrereqs(true);
 });
 
-skillTreeContainer.addEventListener('mouseout', (event) => {
+mainContentDiv.addEventListener('mouseout', (event) => {
   const cell = event.target.closest('.skill');
   if (!cell) return;
 
@@ -274,72 +271,78 @@ function resetAllSkills() {
 }
 
 // --- Calculations and Local Update of a Tree ---
-skillCells.forEach((cell) => {
+/**
+ * Breadth First Search traversal in both directions at the same time.
+ *
+ * @param {Skill} skill - The starting skill to update, triggering updates for its prerequisites and children.
+ */
+// Adapted from https://ellen-park.medium.com/implementing-breadth-first-search-in-javascript-49af8cfad763 (This is for tree)
+// and https://hackernoon.com/a-beginners-guide-to-bfs-and-dfs-in-javascript (This is for graph)
+function updateSkillLevelInHtmlBFS(skill) {
+  function updateSkillLevelInHtml(skill) {
+    skill.skillCell.querySelector('.skillLevel').textContent = skill.level;
+  }
+
+  const queue = [skill];
+  const visited = new Set();
+
+  while (queue.length > 0) {
+    const currentSkill = queue.shift();
+    if (visited.has(currentSkill.name)) continue;
+    visited.add(currentSkill.name);
+
+    updateSkillLevelInHtml(currentSkill);
+
+    // Add prerequisites and children (the neighbours) to the queue
+    if (currentSkill.prereq && !visited.has(currentSkill.prereq.name)) {
+      queue.push(currentSkill.prereq);
+    }
+    currentSkill.children.forEach((child) => {
+      if (!visited.has(child.name)) {
+        queue.push(child);
+      }
+    });
+  }
+}
+
+mainContentDiv.addEventListener('mousedown', (event) => {
+  const cell = event.target.closest('.skill');
+  if (!cell) return;
+
   const skillName = cell.getElementsByClassName('skillName')[0].textContent;
   const skill = skillMap.get(skillName);
 
-  /**
-   * Breadth First Search traversal in both directions at the same time.
-   *
-   * @param {Skill} skill - The starting skill to update, triggering updates for its prerequisites and children.
-   */
-  // Adapted from https://ellen-park.medium.com/implementing-breadth-first-search-in-javascript-49af8cfad763 (This is for tree)
-  // and https://hackernoon.com/a-beginners-guide-to-bfs-and-dfs-in-javascript (This is for graph)
-  function updateSkillLevelInHtmlBFS(skill) {
-    function updateSkillLevelInHtml(skill) {
-      skill.skillCell.querySelector('.skillLevel').textContent = skill.level;
-    }
+  const isCtrlPressed = event.ctrlKey;
+  const isRightClick = event.button === 2;
 
-    const queue = [skill];
-    const visited = new Set();
-
-    while (queue.length > 0) {
-      const currentSkill = queue.shift();
-      if (visited.has(currentSkill.name)) continue;
-      visited.add(currentSkill.name);
-
-      updateSkillLevelInHtml(currentSkill);
-
-      // Add prerequisites and children (the neighbours) to the queue
-      if (currentSkill.prereq && !visited.has(currentSkill.prereq.name)) {
-        queue.push(currentSkill.prereq);
-      }
-      currentSkill.children.forEach((child) => {
-        if (!visited.has(child.name)) {
-          queue.push(child);
-        }
-      });
-    }
+  if (isRightClick && !isCtrlPressed) {
+    skill.decreaseLevel();
+  } else if (isRightClick && isCtrlPressed) {
+    skill.setLevelZero();
+  } else if (!isRightClick && !isCtrlPressed) {
+    skill.increaseLevel();
+  } else if (!isRightClick && isCtrlPressed) {
+    skill.setLevelTen();
   }
 
-  cell.addEventListener('mousedown', (event) => {
-    const isCtrlPressed = event.ctrlKey;
-    const isRightClick = event.button === 2;
+  updateSkillLevelInHtmlBFS(skill);
 
-    if (isRightClick && !isCtrlPressed) {
-      skill.decreaseLevel();
-    } else if (isRightClick && isCtrlPressed) {
-      skill.setLevelZero();
-    } else if (!isRightClick && !isCtrlPressed) {
-      skill.increaseLevel();
-    } else if (!isRightClick && isCtrlPressed) {
-      skill.setLevelTen();
-    }
+  // Update current Tree SP
+  skill.tree.updateTreeSP();
+  updateGlobalSP();
+});
 
-    updateSkillLevelInHtmlBFS(skill);
+mainContentDiv.addEventListener('long-press', (event) => {
+  const cell = event.target.closest('.skill');
+  if (!cell) return;
 
-    // Update current Tree SP
-    skill.tree.updateTreeSP();
-    updateGlobalSP();
-  });
+  const skillName = cell.getElementsByClassName('skillName')[0].textContent;
+  const skill = skillMap.get(skillName);
 
-  cell.addEventListener('long-press', (event) => {
-    event.preventDefault();
-    skill.setLevelZero();
-    updateSkillLevelInHtmlBFS(skill);
-    skill.tree.updateTreeSP();
-    updateGlobalSP();
-  });
+  skill.setLevelZero();
+  updateSkillLevelInHtmlBFS(skill);
+  skill.tree.updateTreeSP();
+  updateGlobalSP();
 });
 
 // --- Unique Case: Process Materials dummies update ---
