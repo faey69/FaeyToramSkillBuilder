@@ -188,17 +188,10 @@ skillTrees.forEach(({ name, data }) => {
 });
 
 // ---------- setup & util functions ----------
-const skillTreeElements = Array.from(
-  document.getElementsByClassName('skillTreeMainDiv')
-);
-skillTreeElements.forEach((element) => {
-  // Prevent the context menu from appearing on right-click
-  element.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-  });
-
-  // Prevent text selection on double-click
-  element.addEventListener('selectstart', function (event) {
+['contextmenu', 'selectstart'].forEach((eventType) => {
+  mainContentDiv.addEventListener(eventType, (event) => {
+    const skillTreeMainDiv = event.target.closest('.skillTreeMainDiv');
+    if (!skillTreeMainDiv) return;
     event.preventDefault();
   });
 });
@@ -209,28 +202,19 @@ resetAllBtn.addEventListener('click', () => {
 });
 
 // Skills highlighting
-mainContentDiv.addEventListener('mouseover', (event) => {
-  const cell = event.target.closest('.skill');
-  if (!cell) return;
+['mouseover', 'mouseout'].forEach((eventType) => {
+  mainContentDiv.addEventListener(eventType, (event) => {
+    const cell = event.target.closest('.skill');
+    if (!cell) return;
 
-  const skillName = cell.querySelector('.skillName').textContent;
-  const skill = skillMap.get(skillName);
-  if (!skill) return;
+    const skillName = cell.querySelector('.skillName').textContent;
+    const skill = skillMap.get(skillName);
+    if (!skill) return;
 
-  cell.classList.add('bg-pink-100');
-  skill.highlightPrereqs(true);
-});
-
-mainContentDiv.addEventListener('mouseout', (event) => {
-  const cell = event.target.closest('.skill');
-  if (!cell) return;
-
-  const skillName = cell.querySelector('.skillName').textContent;
-  const skill = skillMap.get(skillName);
-  if (!skill) return;
-
-  cell.classList.remove('bg-pink-100');
-  skill.highlightPrereqs(false);
+    const isHighlighted = eventType === 'mouseover';
+    cell.classList.toggle('bg-pink-100', isHighlighted);
+    skill.highlightPrereqs(isHighlighted);
+  });
 });
 
 // ---------- SP calculations and updates ----------
