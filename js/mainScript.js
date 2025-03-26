@@ -326,7 +326,6 @@ skillCells.forEach((cell) => {
       skill.setLevelTen();
     }
 
-    // Recursively update the DOM for the skill and its prerequisites
     updateSkillLevelInHtmlBFS(skill);
 
     // Update current Tree SP
