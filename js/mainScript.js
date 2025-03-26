@@ -204,7 +204,7 @@ skillTrees.forEach(({ name, data }) => {
 
 resetAllBtn.addEventListener('click', () => {
   resetAllSkills();
-  updateSkillDisplay();
+  updateAllSkillsHtml();
 });
 
 // Skills highlighting
@@ -229,7 +229,7 @@ function updateHtmlGlobalSP() {
 }
 
 // This function updates all skills in all trees, unlike updateSkillLevelInHtmlBFS();
-function updateSkillDisplay() {
+function updateAllSkillsHtml() {
   skillTreeArr.forEach((tree) => {
     tree.skills.forEach((skill) => {
       // Find the HTML element corresponding to the skill name
