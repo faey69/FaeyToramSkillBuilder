@@ -28,9 +28,11 @@ class Tree {
 
   // Reset all skill levels to zero
   resetSkillLevels() {
+    const removedSP = this.getTotalLevels();
     this.skills.forEach((skill) => {
       skill.level = 0;
     });
+    globalSP -= removedSP;
   }
 
   getTotalLevels() {
@@ -94,14 +96,16 @@ class Skill {
 
   increaseLevel() {
     if (this.level < 10) {
-      this.level += 1;
+      this.level++;
+      globalSP++;
       this.setPrerequisiteLevels();
     }
   }
 
   decreaseLevel() {
     if (this.level > 0) {
-      this.level -= 1;
+      this.level--;
+      globalSP--;
       // If the skill's level drops below 5, reset children
       if (this.level < 5) {
         this.resetChildren();
@@ -116,7 +120,9 @@ class Skill {
   setPrerequisiteLevels() {
     if (this.prereq) {
       if (this.prereq.level < 5) {
+        const beforeLvl = this.prereq.level;
         this.prereq.level = 5;
+        globalSP += this.prereq.level - beforeLvl;
       }
       // Recursively reset all of the prereq's prereqs
       this.prereq.setPrerequisiteLevels();
@@ -126,11 +132,7 @@ class Skill {
   highlightPrereqs(highlight) {
     const prereqCell = this.prereqCell;
     if (prereqCell) {
-      if (highlight) {
-        prereqCell.classList.add('bg-pink-100');
-      } else {
-        prereqCell.classList.remove('bg-pink-100');
-      }
+      prereqCell.classList.toggle('bg-pink-100', highlight);
       if (this.prereq) {
         // Recursively highlight prerequisites
         this.prereq.highlightPrereqs(highlight);
@@ -140,6 +142,7 @@ class Skill {
 
   resetChildren() {
     this.children.forEach((child) => {
+      globalSP -= child.level;
       child.level = 0;
       // Recursively reset all of the child's children
       child.resetChildren();
@@ -147,12 +150,15 @@ class Skill {
   }
 
   setLevelZero() {
+    globalSP -= this.level;
     this.level = 0;
     this.resetChildren();
   }
 
   setLevelTen() {
+    const beforeLvl = this.level;
     this.level = 10;
+    globalSP += this.level - beforeLvl;
     this.setPrerequisiteLevels();
   }
 }
@@ -234,15 +240,10 @@ function updateSkillDisplay() {
     });
     tree.updateTreeSP();
   });
-  updateGlobalSP();
+  updateHtmlGlobalSP();
 }
 
-function updateGlobalSP() {
-  globalSP = 0;
-  skillTreeArr.forEach((tree) => {
-    globalSP += tree.getTotalLevels();
-  });
-
+function updateHtmlGlobalSP() {
   globalSPSpan.textContent = `Total SP: ${globalSP}`;
 }
 
@@ -251,7 +252,7 @@ function resetAllSkills() {
     tree.resetSkillLevels();
     tree.updateTreeSP();
   });
-  updateGlobalSP();
+  updateHtmlGlobalSP();
 }
 
 // --- Calculations and Local Update of a Tree ---
@@ -316,7 +317,7 @@ mainContentDiv.addEventListener('mousedown', (event) => {
 
   // Update current Tree SP
   skill.tree.updateTreeSP();
-  updateGlobalSP();
+  updateHtmlGlobalSP();
 });
 
 mainContentDiv.addEventListener('long-press', (event) => {
@@ -329,7 +330,7 @@ mainContentDiv.addEventListener('long-press', (event) => {
   skill.setLevelZero();
   updateSkillLevelInHtmlBFS(skill);
   skill.tree.updateTreeSP();
-  updateGlobalSP();
+  updateHtmlGlobalSP();
 });
 
 // --- Unique Case: Process Materials dummies update ---
