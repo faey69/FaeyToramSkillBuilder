@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-
+@config "./tailwind.config.js";
 @layer components {
   .td-skill {
     @apply border border-black min-w-32 min-h-32 w-32 h-32 p-1;
