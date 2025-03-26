@@ -315,15 +315,18 @@ mainContentDiv.addEventListener('mousedown', (event) => {
   const isCtrlPressed = event.ctrlKey;
   const isRightClick = event.button === 2;
 
-  if (isRightClick && !isCtrlPressed) {
-    skill.decreaseLevel();
-  } else if (isRightClick && isCtrlPressed) {
-    skill.setLevelZero();
-  } else if (!isRightClick && !isCtrlPressed) {
-    skill.increaseLevel();
-  } else if (!isRightClick && isCtrlPressed) {
-    skill.setLevelTen();
-  }
+  const actionMap = {
+    rightClick: () => skill.decreaseLevel(),
+    'rightClick+ctrl': () => skill.setLevelZero(),
+    leftClick: () => skill.increaseLevel(),
+    'leftClick+ctrl': () => skill.setLevelTen(),
+  };
+
+  const actionKey = `${isRightClick ? 'rightClick' : 'leftClick'}${
+    isCtrlPressed ? '+ctrl' : ''
+  }`;
+
+  actionMap[actionKey]?.();
 
   updateSkillLevelInHtmlBFS(skill);
 
