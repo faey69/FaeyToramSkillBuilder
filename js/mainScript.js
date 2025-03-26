@@ -224,8 +224,11 @@ resetAllBtn.addEventListener('click', () => {
 });
 
 // ---------- SP calculations and updates ----------
+function updateHtmlGlobalSP() {
+  globalSPSpan.textContent = `Total SP: ${globalSP}`;
+}
 
-// This function updates all skills in all trees, unlike updateSkillLevelInHtmlRecursive();
+// This function updates all skills in all trees, unlike updateSkillLevelInHtmlBFS();
 function updateSkillDisplay() {
   skillTreeArr.forEach((tree) => {
     tree.skills.forEach((skill) => {
@@ -241,10 +244,6 @@ function updateSkillDisplay() {
     tree.updateTreeSP();
   });
   updateHtmlGlobalSP();
-}
-
-function updateHtmlGlobalSP() {
-  globalSPSpan.textContent = `Total SP: ${globalSP}`;
 }
 
 function resetAllSkills() {
