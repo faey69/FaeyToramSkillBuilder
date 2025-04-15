@@ -416,3 +416,14 @@ const minstrelSkillsData = [
   { name: 'Life Song', prereq: 'Healing Song' },
   { name: 'Fantasy Song', prereq: 'Life Song' },
 ];
+
+// --- Dancer Skill Tree ---
+const dancerSkillsData = [
+  { name: 'Fairy Dance', prereq: null },
+  { name: 'Frenzy Dance', prereq: 'Fairy Dance' },
+  { name: 'Astute Dance', prereq: 'Frenzy Dance' },
+  { name: 'Charming Dance', prereq: 'Astute Dance' },
+  { name: 'Spirited Dance', prereq: 'Fairy Dance' },
+  { name: 'Elegant Poise', prereq: null },
+  { name: "Nature's Wonders", prereq: 'Elegant Poise' },
+];
