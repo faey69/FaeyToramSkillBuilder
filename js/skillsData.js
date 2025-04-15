@@ -405,3 +405,14 @@ const supportSkillsData = [
   { name: 'Immunity', prereq: 'Magic Barrier' },
   { name: 'Fast Reaction', prereq: 'Immunity' },
 ];
+
+// --- Minstrel Skill Tree ---
+const minstrelSkillsData = [
+  { name: 'Ad-lib', prereq: null },
+  { name: 'Healing Song', prereq: null },
+  { name: 'Fairy Song', prereq: 'Healing Song' },
+  { name: 'Passion Song', prereq: 'Fairy Song' },
+  { name: 'Wisdom Song', prereq: 'Fairy Song' },
+  { name: 'Life Song', prereq: 'Healing Song' },
+  { name: 'Fantasy Song', prereq: 'Life Song' },
+];

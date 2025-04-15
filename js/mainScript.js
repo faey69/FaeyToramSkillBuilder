@@ -188,6 +188,7 @@ const skillTrees = [
   { name: 'Alchemy', data: alchemySkillsData },
   { name: 'Survival', data: survivalSkillsData },
   { name: 'Support', data: supportSkillsData },
+  { name: 'Minstrel', data: minstrelSkillsData },
 ];
 
 skillTrees.forEach(({ name, data }) => {
