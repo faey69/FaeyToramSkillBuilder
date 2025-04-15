@@ -375,3 +375,16 @@ const alchemySkillsData = [
   { name: 'Technical Synthesis II', prereq: 'Technical Synthesis I' },
   { name: 'Technical Synthesis III', prereq: 'Technical Synthesis II' },
 ];
+
+// --- Survival Skill Tree ---
+const survivalSkillsData = [
+  { name: 'Play Dead', prereq: null },
+  { name: 'EXP Gain Up', prereq: null },
+  { name: 'Drop Rate Up', prereq: null },
+  { name: 'Safe Rest', prereq: null },
+  { name: 'HP Boost', prereq: 'Safe Rest' },
+  { name: "Fighter's High", prereq: 'Safe Rest' },
+  { name: 'Short Rest', prereq: null },
+  { name: 'MP Boost', prereq: 'Short Rest' },
+  { name: 'Sober Analysis', prereq: 'Short Rest' },
+];
