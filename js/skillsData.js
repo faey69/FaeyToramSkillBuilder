@@ -388,3 +388,20 @@ const survivalSkillsData = [
   { name: 'MP Boost', prereq: 'Short Rest' },
   { name: 'Sober Analysis', prereq: 'Short Rest' },
 ];
+
+// --- Support Skill Tree ---
+const supportSkillsData = [
+  { name: 'First Aid', prereq: null },
+  { name: 'Mini Heal', prereq: null },
+  { name: 'Recovery', prereq: 'Mini Heal' },
+  { name: 'Sanctuary', prereq: 'Recovery' },
+  { name: 'Heal', prereq: 'Sanctuary' },
+  { name: 'Life Recovery', prereq: null },
+  { name: 'Brave Aura', prereq: 'Life Recovery' },
+  { name: 'High Cycle', prereq: 'Brave Aura' },
+  { name: 'Quick Motion', prereq: 'High Cycle' },
+  { name: 'Mana Recharge', prereq: null },
+  { name: 'Magic Barrier', prereq: 'Mana Recharge' },
+  { name: 'Immunity', prereq: 'Magic Barrier' },
+  { name: 'Fast Reaction', prereq: 'Immunity' },
+];
