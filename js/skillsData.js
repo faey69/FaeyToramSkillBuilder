@@ -446,3 +446,14 @@ const battleSkillsData = [
   { name: 'Defense Mastery', prereq: 'Accuracy UP' },
   { name: 'Super Grip', prereq: 'Defense Mastery' },
 ];
+
+// --- Tamer Skill Tree ---
+const tamerSkillsData = [
+  { name: 'Taming', prereq: null },
+  { name: 'Capture Technique I', prereq: 'Taming' },
+  { name: 'Capture Technique II', prereq: 'Capture Technique I' },
+  { name: 'Skillful Capture', prereq: 'Taming' },
+  { name: 'Careful Capture', prereq: 'Skillful Capture' },
+  { name: 'Pet Heal', prereq: 'Taming' },
+  { name: 'Pet MP Charge', prereq: 'Pet Heal' },
+];
