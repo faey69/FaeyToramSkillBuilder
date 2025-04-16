@@ -5908,6 +5908,244 @@
               </div>
             </div>
           </div>
+          <!-- Battle Skill Tree -->
+          <div
+            id="battleSkillTree"
+            class="skillTreeMainDiv inline-block border border-blue-500 mb-4 w-full"
+          >
+            <div
+              class="skillTreeHeader hover:scale-[1.02] transition-transform duration-150 hover:cursor-pointer border bg-pink-300 active:bg-pink-400 border-red-500 flex items-center justify-between relative w-full lg:w-[50vw] ps-8 pe-8"
+              data-tree-name="Battle Skill Tree"
+            >
+              <img
+                src="./assets/skillIcons/battleSkill/battleSkill.png"
+                alt="Battle Skill"
+                class="w-14 h-14"
+              />
+              <p
+                class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold text-lg"
+              >
+                Battle Skill
+              </p>
+              <div
+                class="flex items-center me-2 font-bold text-lg bg-pink-50 rounded-lg px-1"
+              >
+                <p>SP:</p>
+                <p class="treeSP ms-1" data-tree-name="Battle Skill Tree">0</p>
+              </div>
+            </div>
+
+            <div
+              class="skillTreeTableDiv hidden transform scale-y-0 transition-transform ease-in-out duration-300 origin-top"
+              data-tree-name="Battle Skill Tree"
+            >
+              <div class="overflow-x-auto">
+                <table class="border-collapse table-fixed text-center">
+                  <tr>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Magic UP</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/magicUP.png"
+                            alt="Magic UP"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Concentrate</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/concentrate.png"
+                            alt="Concentrate"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Desperate Resist</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/desperateResist.png"
+                            alt="Desperate Resist"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Increased Energy</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/increasedEnergy.png"
+                            alt="Increased Energy"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Spell Burst</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/spellBurst.png"
+                            alt="Spell Burst"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Attack UP</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/attackUP.png"
+                            alt="Attack UP"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Whack</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/whack.png"
+                            alt="Whack"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Critical UP</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/criticalUP.png"
+                            alt="Critical UP"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Intimidating Power</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/intimidatingPower.png"
+                            alt="Intimidating Power"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Secret Chase Attack</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/secretChaseAttack.png"
+                            alt="Secret Chase Attack"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Defense UP</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/defenseUP.png"
+                            alt="Defense UP"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Dodge UP</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/dodgeUP.png"
+                            alt="Dodge UP"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Accuracy UP</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/accuracyUP.png"
+                            alt="Accuracy UP"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Defense Mastery</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/defenseMastery.png"
+                            alt="Defense Mastery"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="skill td-skill">
+                      <div class="flex flex-col h-full">
+                        <p class="skillName">Super Grip</p>
+                        <div class="mt-auto flex flex-col items-center">
+                          <img
+                            src="./assets/skillIcons/battleSkill/superGrip.png"
+                            alt="Super Grip"
+                            class="w-14 h-14"
+                          />
+                          <p class="skillLevel font-bold">0</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
           <!-- End of main content -->
         </div>
       </div>

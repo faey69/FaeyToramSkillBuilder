@@ -427,3 +427,22 @@ const dancerSkillsData = [
   { name: 'Elegant Poise', prereq: null },
   { name: "Nature's Wonders", prereq: 'Elegant Poise' },
 ];
+
+// --- Battle Skill Tree ---
+const battleSkillsData = [
+  { name: 'Magic UP', prereq: null },
+  { name: 'Concentrate', prereq: 'Magic UP' },
+  { name: 'Desperate Resist', prereq: 'Concentrate' },
+  { name: 'Increased Energy', prereq: 'Desperate Resist' },
+  { name: 'Spell Burst', prereq: 'Increased Energy' },
+  { name: 'Attack UP', prereq: null },
+  { name: 'Whack', prereq: 'Attack UP' },
+  { name: 'Critical UP', prereq: 'Whack' },
+  { name: 'Intimidating Power', prereq: 'Critical UP' },
+  { name: 'Secret Chase Attack', prereq: 'Intimidating Power' },
+  { name: 'Defense UP', prereq: null },
+  { name: 'Dodge UP', prereq: 'Defense UP' },
+  { name: 'Accuracy UP', prereq: 'Dodge UP' },
+  { name: 'Defense Mastery', prereq: 'Accuracy UP' },
+  { name: 'Super Grip', prereq: 'Defense Mastery' },
+];
